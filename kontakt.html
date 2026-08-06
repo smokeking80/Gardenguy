@@ -32,7 +32,7 @@ nav.scrolled{border-color:var(--border);box-shadow:0 2px 20px rgba(0,0,0,.06)}
 .page-hero-img{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.6) 100%),url("images/1.jpeg") center/cover no-repeat}
 .page-hero-content{position:absolute;bottom:0;left:0;right:0;padding:0 var(--pad) 48px;z-index:2}
 .page-breadcrumb{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:12px}
-.page-breadcrumb a{color:rgba(255,255,255,.6);text-decoration:none}
+.page-breadcrumb a{color:rgba(255,255,255,.8);text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(255,255,255,.12);border-radius:100px;backdrop-filter:blur(8px);transition:background .2s}.page-breadcrumb a:hover{background:rgba(255,255,255,.2);color:#fff}
 .page-h1{font-family:var(--serif);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;line-height:.95;letter-spacing:-.03em;color:#fff}
 .page-h1 em{font-style:italic;color:rgba(255,255,255,.7)}
 /* CONTACT GRID */
@@ -133,7 +133,7 @@ footer{background:var(--charcoal);padding:48px var(--pad) 32px}
 <div class="page-hero">
   <div class="page-hero-img"></div>
   <div class="page-hero-content">
-    <div class="page-breadcrumb"><a href="index.html">Domů</a> / Kontakt</div>
+    <div class="page-breadcrumb"><a href="index.html">← Zpět na hlavní stránku</a> / Kontakt</div>
     <h1 class="page-h1">Kontaktujte<br/><em>nás</em></h1>
   </div>
 </div>
@@ -188,7 +188,8 @@ footer{background:var(--charcoal);padding:48px var(--pad) 32px}
   <div class="form-card">
     <div class="form-card-title">Nezávazná poptávka</div>
     <div class="form-card-sub">Odpovídáme do 24 hodin · Zdarma</div>
-    <form id="contactForm" novalidate>
+    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <input type="hidden" name="access_key" value="4151fa46-3bf2-4bec-9d5c-413f021d2fc6"/>
       <div class="fg-row">
         <div><label for="name">Jméno *</label><input id="name" placeholder="Jan Novák" required type="text"/></div>
         <div><label for="phone">Telefon *</label><input id="phone" placeholder="+420 777 123 456" required type="tel"/></div>
@@ -269,9 +270,9 @@ const btn=document.getElementById('hamburger');
 const menu=document.getElementById('mobileMenu');
 function closeMenu(){menu.classList.remove('open')}
 btn.addEventListener('click',()=>menu.classList.toggle('open'));
-const EJ_KEY='YOUR_PUBLIC_KEY';const EJ_SVC='YOUR_SERVICE_ID';const EJ_TPL='YOUR_TEMPLATE_ID';
-const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
-s.onload=()=>{if(EJ_KEY!=='YOUR_PUBLIC_KEY')emailjs.init(EJ_KEY)};document.head.appendChild(s);
+
+
+
 document.getElementById('contactForm').addEventListener('submit',async function(e){
   e.preventDefault();const b=document.getElementById('submitBtn');b.disabled=true;b.textContent='Odesílám…';
   const p={name:document.getElementById('name').value,phone:document.getElementById('phone').value,email:document.getElementById('email').value,adresa:document.getElementById('adresa').value,sluzba:document.getElementById('sluzba').value,plocha:document.getElementById('plocha').value,zprava:document.getElementById('zprava').value};
