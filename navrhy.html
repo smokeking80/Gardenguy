@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="cs"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Návrhy zahrad — Posečem.cz Brno</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--green:#2A5C35;--green-mid:#3D7A4A;--green-light:#E8F0E9;--cream:#FAFAF7;--white:#FFFFFF;--charcoal:#1C1C1A;--gray:#6B6B68;--border:#E2E2DC;--serif:'Playfair Display',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--pad:clamp(20px,5vw,80px)}
+html{scroll-behavior:smooth}body{font-family:var(--sans);background:var(--cream);color:var(--charcoal);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--green)}img{display:block;max-width:100%}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);height:72px;background:rgba(250,250,247,.95);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+nav.scrolled{border-color:var(--border);box-shadow:0 2px 20px rgba(0,0,0,.06)}
+.nav-logo{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--charcoal);text-decoration:none}.nav-logo span{color:var(--green)}
+.nav-links{display:flex;gap:36px;list-style:none}.nav-links a{font-size:.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s}.nav-links a:hover{color:var(--green)}
+.nav-btn{background:var(--green);color:#fff;padding:11px 24px;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:background .2s}
+.nav-btn:hover{background:var(--green-mid)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--charcoal);border-radius:2px}
+.mobile-menu{display:none;position:fixed;inset:72px 0 0 0;background:var(--cream);z-index:199;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu.open{display:flex}.mobile-menu a{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--charcoal);text-decoration:none}
+.page-hero{margin-top:72px;position:relative;height:50vh;min-height:300px;max-height:500px;overflow:hidden}
+.page-hero-img{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.55) 100%),url("images/navrhy-zahrad.jpeg") center/cover no-repeat}
+.page-hero-content{position:absolute;bottom:0;left:0;right:0;padding:0 var(--pad) 48px;z-index:2}
+.page-breadcrumb{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:12px}
+.page-breadcrumb a{color:rgba(255,255,255,.6);text-decoration:none}.page-breadcrumb a:hover{color:#fff}
+.page-h1{font-family:var(--serif);font-size:clamp(2rem,5vw,4rem);font-weight:900;line-height:.95;letter-spacing:-.03em;color:#fff}
+.page-h1 em{font-style:italic;color:rgba(255,255,255,.7)}
+.page-content{max-width:1100px;margin:0 auto;padding:80px var(--pad);display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:start}
+.page-text h2{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;letter-spacing:-.02em;color:var(--charcoal);margin-bottom:20px}
+.page-text h2 em{font-style:italic;color:var(--green)}
+.page-text p{color:var(--gray);line-height:1.75;margin-bottom:16px;font-size:1rem}
+.page-checks{display:flex;flex-direction:column;gap:12px;margin-top:28px;margin-bottom:36px}
+.check-item{display:flex;gap:12px;align-items:flex-start;font-size:.95rem;color:var(--charcoal)}
+.check-icon{width:22px;height:22px;border-radius:50%;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;color:var(--green);margin-top:1px}
+.btn-cta{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;padding:15px 32px;border-radius:2px;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s}
+.btn-cta:hover{background:var(--green-mid);transform:translateY(-2px)}
+.form-card{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:36px;position:sticky;top:88px}
+.form-card-title{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--charcoal);margin-bottom:24px}
+.fg{margin-bottom:14px}.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+label{display:block;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-bottom:5px}
+input,textarea,select{width:100%;padding:11px 13px;background:var(--cream);border:1.5px solid var(--border);border-radius:2px;font-family:var(--sans);font-size:.9rem;color:var(--charcoal);outline:none;transition:border-color .2s;-webkit-appearance:none}
+input:focus,textarea:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(42,92,53,.08)}
+textarea{resize:vertical;min-height:90px}
+.submit-btn{width:100%;margin-top:6px;padding:14px;border:none;border-radius:2px;background:var(--green);color:#fff;font-family:var(--sans);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.submit-btn:hover{background:var(--green-mid)}.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+.form-note{text-align:center;margin-top:8px;font-size:.72rem;color:var(--gray)}
+.success-box{display:none;background:var(--green-light);border:1.5px solid var(--green);border-radius:2px;padding:18px;text-align:center;color:var(--green);font-size:.9rem;line-height:1.6;margin-top:12px}
+.success-box.show{display:block}
+footer{background:var(--charcoal);padding:48px var(--pad) 32px}
+.footer-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:24px}
+.footer-logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:#fff}.footer-logo span{color:var(--green-mid)}
+.footer-tagline{font-size:.78rem;color:rgba(255,255,255,.4);margin-top:4px}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap}.footer-links a{font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.2)}
+@media(max-width:860px){.page-content{grid-template-columns:1fr;gap:40px}.form-card{position:static}.fg-row{grid-template-columns:1fr}.nav-links{display:none}.hamburger{display:flex}}
+@media(max-width:480px){.page-h1{font-size:clamp(1.8rem,8vw,2.5rem)}.page-hero{height:45vw;min-height:220px}}
+</style></head><body>
+<nav id="nav">
+  <a class="nav-logo" href="index.html">Posečem<span>.cz</span></a>
+  <ul class="nav-links"><li><a href="index.html#cenik">Ceník</a></li><li><a href="kontakt.html">Kontakt</a></li></ul>
+  <a class="nav-btn" href="kontakt.html">Poptávka zdarma</a>
+  <button aria-label="Menu" class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Domů</a>
+  <a href="index.html#cenik" onclick="closeMenu()">Ceník</a>
+  <a href="kontakt.html" onclick="closeMenu()">Kontakt</a>
+  <a class="nav-btn" href="kontakt.html" onclick="closeMenu()">Poptávka zdarma</a>
+</div>
+<div class="page-hero">
+  <div class="page-hero-img"></div>
+  <div class="page-hero-content">
+    <div class="page-breadcrumb"><a href="index.html">Domů</a> / Návrhy zahrad</div>
+    <h1 class="page-h1">Návrhy<br/><em>zahrad</em></h1>
+  </div>
+</div>
+<div class="page-content">
+  <div class="page-text">
+    <h2>Zahrada navržená přesně podle vašich přání</h2>
+    <p>Vytvoříme kompletní projekt vaší zahrady — od prvního nákresu až po realizaci. Rozmístění trávníku, záhonů, chodníků i závlahy.</p><p>Každý návrh je jedinečný a vychází z vašich požadavků, tvaru pozemku a životního stylu.</p><div class='page-checks'><div class='check-item'><div class='check-icon'>✓</div>Konzultace zdarma</div><div class='check-item'><div class='check-icon'>✓</div>Projektová dokumentace</div><div class='check-item'><div class='check-icon'>✓</div>Realizace projektu na klíč</div><div class='check-item'><div class='check-icon'>✓</div>Zahrada, terasa, chodníky, záhony</div></div>
+    <a class="btn-cta" href="kontakt.html">Poptat tuto službu →</a>
+  </div>
+  <div class="form-card">
+    <div class="form-card-title">Rychlá poptávka</div>
+    <form id="contactForm" novalidate>
+      <div class="fg-row">
+        <div><label>Jméno *</label><input placeholder="Jan Novák" required type="text" id="name"/></div>
+        <div><label>Telefon *</label><input placeholder="+420 777 123 456" required type="tel" id="phone"/></div>
+      </div>
+      <div class="fg"><label>Email *</label><input placeholder="jan@email.cz" required type="email" id="email"/></div>
+      <div class="fg"><label>Adresa zahrady</label><input placeholder="Ulice, Brno" type="text" id="adresa"/></div>
+      <input type="hidden" id="sluzba" value="Návrh zahrady"/>
+      <div class="fg"><label>Zpráva</label><textarea id="zprava" placeholder="Přibližná plocha, stav trávy, speciální požadavky…"></textarea></div>
+      <button class="submit-btn" id="submitBtn" type="submit">Odeslat poptávku zdarma</button>
+      <p class="form-note">Odpovídáme do 24 hodin · Bez závazku</p>
+    </form>
+    <div class="success-box" id="successBox">✅ Ozveme se vám do 24 hodin!</div>
+  </div>
+</div>
+<footer>
+  <div class="footer-top">
+    <div><div class="footer-logo">Posečem<span>.cz</span></div><div class="footer-tagline">Profesionální zahradní služby · Brno a okolí</div></div>
+    <nav class="footer-links">
+      <a href="seceni.html">Sečení</a><a href="zavlazovani.html">Zavlažování</a><a href="navrhy.html">Návrhy</a>
+      <a href="arealy.html">Areály</a><a href="upravy.html">Úprava okrajů</a><a href="odvoz.html">Odvoz biomasy</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </div>
+  <p class="footer-copy">© 2025 Posečem.cz · Brno a okolí</p>
+</footer>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>50)},{passive:true});
+const btn=document.getElementById('hamburger');
+const menu=document.getElementById('mobileMenu');
+function closeMenu(){menu.classList.remove('open')}
+btn.addEventListener('click',()=>menu.classList.toggle('open'));
+const EJ_KEY='YOUR_PUBLIC_KEY';const EJ_SVC='YOUR_SERVICE_ID';const EJ_TPL='YOUR_TEMPLATE_ID';
+const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+s.onload=()=>{if(EJ_KEY!=='YOUR_PUBLIC_KEY')emailjs.init(EJ_KEY)};document.head.appendChild(s);
+document.getElementById('contactForm').addEventListener('submit',async function(e){
+  e.preventDefault();const btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='Odesílám…';
+  const p={name:document.getElementById('name').value,phone:document.getElementById('phone').value,email:document.getElementById('email').value,adresa:document.getElementById('adresa').value,sluzba:document.getElementById('sluzba').value,zprava:document.getElementById('zprava').value};
+  try{if(EJ_KEY==='YOUR_PUBLIC_KEY'){await new Promise(r=>setTimeout(r,900));}else{await emailjs.send(EJ_SVC,EJ_TPL,p);}
+  document.getElementById('contactForm').style.display='none';document.getElementById('successBox').classList.add('show');
+  }catch{btn.disabled=false;btn.textContent='Odeslat poptávku zdarma';alert('Nepodařilo se odeslat. Zavolejte nám prosím.');}
+});
+</script></body></html>
