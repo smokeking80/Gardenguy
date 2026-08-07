@@ -103,22 +103,6 @@ img{display:block;max-width:100%}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
 /* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 var(--pad);height:72px;
-  background:rgba(10,30,15,0.92);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-
-
-
-.nav-phone:hover{color:#fff}
-
-.nav-kontakt:hover{color:#fff}
 
 
 
@@ -126,9 +110,13 @@ nav{
 
 
 
-@media(max-width:600px){
-  .nav-phone,
-}
+
+
+
+
+
+
+@media(max-width:600px){}
 
 /* HERO — zelené pozadí, dlaždice */
 #hero{
@@ -136,7 +124,7 @@ nav{
   background:linear-gradient(160deg,#0A1E0D 0%,#0F2A14 50%,#0A1E0D 100%);
   min-height:100vh;
   display:flex;flex-direction:column;
-  padding:88px 16px 16px;
+  padding:80px 12px 12px;
 }
 .hero-img{display:none}
 .hero-content{display:none}
@@ -625,7 +613,7 @@ footer{
 
 /* RESPONSIVE */
 @media(max-width:960px){
-    .hamburger{display:flex}
+    
   #o-nas{grid-template-columns:1fr}
   .about-img{min-height:300px}
   .sluzby-header,.cenik-intro{grid-template-columns:1fr;gap:24px}
@@ -793,8 +781,7 @@ footer{
 </footer>
 <script>
 // Nav scroll
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>50)},{passive:true});
+// nav handled by nav.js
 
 
 
