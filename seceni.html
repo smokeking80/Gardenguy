@@ -18,7 +18,7 @@ nav.scrolled{border-color:var(--border);box-shadow:0 2px 20px rgba(0,0,0,.06)}
 .hamburger span{display:block;width:22px;height:2px;background:var(--charcoal);border-radius:2px}
 .mobile-menu{display:none;position:fixed;inset:72px 0 0 0;background:var(--cream);z-index:199;flex-direction:column;align-items:center;justify-content:center;gap:32px}
 .mobile-menu.open{display:flex}.mobile-menu a{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--charcoal);text-decoration:none}
-.page-hero{margin-top:72px;position:relative;height:50vh;min-height:300px;max-height:500px;overflow:hidden}
+.page-hero{margin-top:0;padding-top:72px;position:relative;height:50vh;min-height:300px;max-height:500px;overflow:hidden}
 .page-hero-img{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.55) 100%),url("images/seceni.jpeg") center/cover no-repeat}
 .page-hero-content{position:absolute;bottom:0;left:0;right:0;padding:0 var(--pad) 48px;z-index:2}
 .page-breadcrumb{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:12px}
@@ -55,18 +55,6 @@ footer{background:var(--charcoal);padding:48px var(--pad) 32px}
 @media(max-width:860px){.page-content{grid-template-columns:1fr;gap:40px}.form-card{position:static}.fg-row{grid-template-columns:1fr}.nav-links{display:none}.hamburger{display:flex}}
 @media(max-width:480px){.page-h1{font-size:clamp(1.8rem,8vw,2.5rem)}.page-hero{height:45vw;min-height:220px}}
 </style></head><body>
-<nav id="nav">
-  <a class="nav-logo" href="index.html">Posečem<span>.cz</span></a>
-  <ul class="nav-links"><li><a href="index.html#cenik">Ceník</a></li><li><a href="kontakt.html">Kontakt</a></li></ul>
-  <a class="nav-btn" href="kontakt.html">Poptávka zdarma</a>
-  <button aria-label="Menu" class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" onclick="closeMenu()">Domů</a>
-  <a href="index.html#cenik" onclick="closeMenu()">Ceník</a>
-  <a href="kontakt.html" onclick="closeMenu()">Kontakt</a>
-  <a class="nav-btn" href="kontakt.html" onclick="closeMenu()">Poptávka zdarma</a>
-</div>
 <div class="page-hero">
   <div class="page-hero-img"></div>
   <div class="page-hero-content">
@@ -80,7 +68,6 @@ footer{background:var(--charcoal);padding:48px var(--pad) 32px}
     <p>Pravidelné sekání travního porostu profesionální technikou. Ať máte malou zahrádku nebo velký areál, vždy odvádíme precizní práci.</p><p>Výsledek je vždy čistý a rovnoměrný — okraje upravené, plocha dokonalá. Přijedeme s vlastním vybavením.</p><div class='page-checks'><div class='check-item'><div class='check-icon'>✓</div>Sekání trávníků všech velikostí</div><div class='check-item'><div class='check-icon'>✓</div>Úprava okrajů v ceně</div><div class='check-item'><div class='check-icon'>✓</div>Odvoz posečené trávy na přání</div><div class='check-item'><div class='check-icon'>✓</div>Výjezd do 24 hodin</div><div class='check-item'><div class='check-icon'>✓</div>Platíte až po dokončení</div></div>
     <a class="btn-cta" href="kontakt.html">Poptat tuto službu →</a>
   </div>
-  <!--
   <div class="form-card">
     <div class="form-card-title">Máte zájem?</div>
     <p style="color:var(--gray);font-size:.95rem;line-height:1.7;margin-bottom:28px">Napište nám nebo zavolejte — nabídku dostanete do 24 hodin zdarma a bez závazku.</p>
@@ -94,7 +81,6 @@ footer{background:var(--charcoal);padding:48px var(--pad) 32px}
       </a>
       <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--cream);border:1px solid var(--border);border-radius:2px;font-size:.9rem;color:var(--gray)">
         <span style="font-size:1.1rem">🕐</span> Po–So 7:00–18:00
-  -->
       </div>
     </div>
   </div>
@@ -113,7 +99,7 @@ footer{background:var(--charcoal);padding:48px var(--pad) 32px}
 </footer>
 <script>
 const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>50)},{passive:true});
+
 const btn=document.getElementById('hamburger');
 const menu=document.getElementById('mobileMenu');
 function closeMenu(){menu.classList.remove('open')}

@@ -28,7 +28,7 @@ nav.scrolled{border-color:var(--border);box-shadow:0 2px 20px rgba(0,0,0,.06)}
 .mobile-menu.open{display:flex}
 .mobile-menu a{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--charcoal);text-decoration:none}
 /* PAGE HERO */
-.page-hero{margin-top:72px;position:relative;height:40vh;min-height:240px;max-height:380px;overflow:hidden}
+.page-hero{margin-top:0;padding-top:72px;position:relative;height:40vh;min-height:240px;max-height:380px;overflow:hidden}
 .page-hero-img{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.6) 100%),url("images/1.jpeg") center/cover no-repeat}
 .page-hero-content{position:absolute;bottom:0;left:0;right:0;padding:0 var(--pad) 48px;z-index:2}
 .page-breadcrumb{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:12px}
@@ -115,21 +115,6 @@ footer{background:var(--charcoal);padding:48px var(--pad) 32px}
 </style>
 </head>
 <body>
-<nav id="nav">
-  <a class="nav-logo" href="index.html">Posečem<span>.cz</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html#cenik">Ceník</a></li>
-    <li><a href="kontakt.html">Kontakt</a></li>
-  </ul>
-  <a class="nav-btn" href="kontakt.html">Poptávka zdarma</a>
-  <button aria-label="Menu" class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" onclick="closeMenu()">Domů</a>
-  <a href="index.html#cenik" onclick="closeMenu()">Ceník</a>
-  <a href="kontakt.html" onclick="closeMenu()">Kontakt</a>
-</div>
-
 <div class="page-hero">
   <div class="page-hero-img"></div>
   <div class="page-hero-content">
@@ -256,28 +241,7 @@ footer{background:var(--charcoal);padding:48px var(--pad) 32px}
 </footer>
 
 <script>
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>50)},{passive:true});
-const btn=document.getElementById('hamburger');
-const menu=document.getElementById('mobileMenu');
-function closeMenu(){menu.classList.remove('open')}
-btn.addEventListener('click',()=>menu.classList.toggle('open'));
 
-document.getElementById('contactForm').addEventListener('submit',async function(e){
-  e.preventDefault();
-  const b=document.getElementById('submitBtn');
-  b.disabled=true;b.textContent='Odesílám…';
-  const formData=new FormData(this);
-  // Add name attributes for fields missing them
-  formData.set('name', document.getElementById('name').value);
-  formData.set('phone', document.getElementById('phone').value);
-  formData.set('email', document.getElementById('email').value);
-  formData.set('adresa', document.getElementById('adresa').value);
-  formData.set('sluzba', document.getElementById('sluzba').value);
-  formData.set('plocha', document.getElementById('plocha').value);
-  formData.set('zprava', document.getElementById('zprava').value);
-  try{
-    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:formData});
     const data=await res.json();
     if(data.success){
       document.getElementById('contactForm').style.display='none';
@@ -293,5 +257,6 @@ document.getElementById('contactForm').addEventListener('submit',async function(
   }
 });
 </script>
+<script src="nav.js"></script>
 </body>
 </html>
