@@ -32,14 +32,16 @@ img{display:block;max-width:100%}
 /* HERO TILES — grassandgarden styl */
 .hero-tiles{
   display:grid;
-  grid-template-columns:repeat(6,1fr);
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows:repeat(2,1fr);
   gap:3px;
+  flex:1;
+  min-height:calc(100svh - 72px);
 }
 .hero-tile{
   position:relative;
   display:block;
   overflow:hidden;
-  aspect-ratio:3/2;
   text-decoration:none;
 }
 .hero-tile-img{
@@ -60,21 +62,23 @@ img{display:block;max-width:100%}
 .hero-tile-label{
   position:absolute;
   bottom:0;left:0;right:0;
-  padding:12px 14px;
+  padding:16px 18px;
   font-family:var(--serif);
-  font-size:clamp(.85rem,1.3vw,1.1rem);
+  font-size:clamp(1rem,1.8vw,1.4rem);
   font-weight:700;color:#fff;
   letter-spacing:-.01em;
   z-index:2;
   transition:padding .3s cubic-bezier(.22,1,.36,1);
 }
-.hero-tile:hover .hero-tile-label{padding-bottom:18px}
+.hero-tile:hover .hero-tile-label{padding-bottom:24px}
 @media(max-width:760px){
-  .hero-tiles{grid-template-columns:repeat(3,1fr)}
-  .hero-tile{aspect-ratio:1/1}
+  .hero-tiles{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(3,1fr)}
+  #hero{min-height:auto}
+  .hero-tiles{min-height:calc(100svh - 72px)}
 }
 @media(max-width:480px){
   .hero-tiles{grid-template-columns:repeat(2,1fr)}
+  .hero-tile-label{font-size:.9rem;padding:10px 12px}
 }
 
 /* TOP GRID — grassandgarden styl */
@@ -185,62 +189,109 @@ nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 var(--pad);height:72px;
-  background:rgba(0,0,0,.18);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+  background:rgba(10,30,15,0.92);
   backdrop-filter:blur(12px);
-  border-bottom:1px solid transparent;
-  transition:border-color .3s,box-shadow .3s;
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
-nav.scrolled{background:rgba(20,20,20,.65);box-shadow:0 10px 30px rgba(0,0,0,.25)}
-.nav-logo{
-  font-family:var(--serif);font-size:1.3rem;font-weight:700;
-  color:#fff;text-decoration:none;letter-spacing:-.01em;
-  display:flex;align-items:center;
+.nav-logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-logo span{color:#9ACD5A}
+.nav-logo-img{height:40px;width:auto;display:block;border-radius:4px}
+.nav-links{display:none}
+.nav-btn{display:none}
+.hamburger{display:none}
+.mobile-menu{display:none}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-phone{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+.nav-phone:hover{color:#fff}
+.nav-kontakt{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+.nav-kontakt:hover{color:#fff}
+.nav-menu-btn{
+  display:flex;align-items:center;gap:10px;
+  background:none;border:1.5px solid rgba(255,255,255,.2);
+  color:#fff;padding:9px 20px;border-radius:2px;
+  font-family:var(--sans);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;transition:all .25s;
 }
-.nav-logo span{color:var(--green)}
-.nav-logo-img{height:42px;width:auto;display:block;border-radius:4px;}
-.nav-links{display:flex;gap:36px;list-style:none}
-.nav-links a{
-  font-size:.82rem;font-weight:500;letter-spacing:.06em;
-  text-transform:uppercase;color:#fff;
-  text-decoration:none;transition:color .2s;
-}
-.nav-links a:hover{color:var(--green)}
-.nav-btn{
-  background:var(--green);color:#fff;
-  padding:11px 24px;
-  font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  text-decoration:none;border-radius:2px;
-  transition:background .2s,transform .2s;
-  white-space:nowrap;
-}
-.nav-btn:hover{background:var(--green-mid);transform:translateY(-1px)}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
-.mobile-menu{
-  display:none;position:fixed;inset:72px 0 0 0;
-  background:var(--cream);z-index:199;
-  flex-direction:column;align-items:center;justify-content:center;gap:32px;
-}
-.mobile-menu.open{display:flex}
-.mobile-menu a{
-  font-family:var(--serif);font-size:2rem;font-weight:700;
-  color:var(--charcoal);text-decoration:none;
-}
-.mobile-menu a:hover{color:var(--green)}
+.nav-menu-btn:hover{border-color:#9ACD5A;color:#9ACD5A}
+.nav-menu-icon{display:flex;flex-direction:column;gap:3px}
+.nav-menu-icon span{display:block;width:14px;height:1.5px;background:currentColor;border-radius:1px}
 
-/* HERO */
+/* FULLSCREEN MENU OVERLAY */
+.menu-overlay{
+  position:fixed;inset:0;z-index:300;
+  background:rgba(8,24,12,0.98);
+  backdrop-filter:blur(24px);
+  display:none;flex-direction:column;
+  overflow-y:auto;
+}
+.menu-overlay.open{display:flex}
+.menu-overlay-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px var(--pad);height:72px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  flex-shrink:0;
+}
+.menu-overlay-logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:#fff}
+.menu-overlay-logo span{color:#9ACD5A}
+.menu-close-btn{
+  display:flex;align-items:center;gap:10px;
+  background:none;border:1.5px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.7);
+  font-family:var(--sans);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;padding:9px 20px;border-radius:2px;
+}
+.menu-close-btn:hover{border-color:#fff;color:#fff}
+.menu-items{display:flex;flex-direction:column;padding:0 var(--pad);flex:1}
+.menu-item{
+  display:flex;align-items:center;gap:20px;
+  padding:20px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  text-decoration:none;
+  transition:all .2s;
+}
+.menu-item:first-child{border-top:1px solid rgba(255,255,255,.06)}
+.menu-item:hover .menu-item-sub{color:#9ACD5A}
+.menu-item:hover .menu-item-arrow{color:#9ACD5A;transform:translateX(6px)}
+.menu-item-icon{
+  width:46px;height:46px;border-radius:3px;
+  background:rgba(255,255,255,.05);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;flex-shrink:0;
+  transition:background .2s;
+}
+.menu-item:hover .menu-item-icon{background:rgba(154,205,90,.12)}
+.menu-item-text{flex:1}
+.menu-item-title{
+  font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);margin-bottom:3px;
+}
+.menu-item-sub{
+  font-family:var(--serif);font-size:clamp(1rem,2.2vw,1.4rem);
+  font-weight:700;color:#fff;line-height:1.1;transition:color .2s;
+}
+.menu-item-arrow{color:rgba(255,255,255,.15);font-size:1.1rem;transition:all .25s}
+.menu-bottom{
+  padding:28px var(--pad) 40px;
+  border-top:1px solid rgba(255,255,255,.07);
+  display:flex;gap:28px;flex-wrap:wrap;align-items:center;
+  flex-shrink:0;
+}
+.menu-bottom a{font-size:.78rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.menu-bottom a:hover{color:#fff}
+
+@media(max-width:600px){
+  .nav-phone,.nav-kontakt{display:none}
+}
+
+/* HERO — zelené pozadí, dlaždice */
 #hero{
-  position:relative;
-  overflow:hidden;
+  padding-top:72px;
+  background:linear-gradient(160deg,#0A1E0D 0%,#0F2A14 50%,#0A1E0D 100%);
+  min-height:100svh;
+  display:flex;flex-direction:column;
 }
-.hero-img{
-  height:55vh;min-height:280px;max-height:480px;
-  background:
-    linear-gradient(to bottom, rgba(0,0,0,.1) 0%, rgba(0,0,0,.4) 100%),
-    url("images/1.jpeg") center/cover no-repeat;
-}
+.hero-img{display:none}
 .hero-content{display:none}
 .hero-tag{
   display:inline-block;
@@ -714,25 +765,90 @@ footer{
 <body>
 <!-- NAV -->
 <nav id="nav">
-<a class="nav-logo" href="#"><img class="nav-logo-img" src="images/logo.jpeg" alt="Posečem.cz"/></a>
-<ul class="nav-links">
-<li><a href="#cenik">Ceník</a></li>
-<li><a href="kontakt.html">Kontakt</a></li>
-</ul>
-<a class="nav-btn" href="kontakt.html">Poptávka zdarma</a>
-<button aria-label="Menu" class="hamburger" id="hamburger">
-<span></span><span></span><span></span>
-</button>
+  <a class="nav-logo" href="index.html"><img class="nav-logo-img" src="images/logo.jpeg" alt="Posečem.cz"/></a>
+  <div class="nav-right">
+    <a class="nav-phone" href="tel:+420777000222">📞 +420 777 000 222</a>
+    <a class="nav-kontakt" href="kontakt.html">Kontakt</a>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Otevřít menu">
+      <div class="nav-menu-icon"><span></span><span></span><span></span></div>
+      MENU
+    </button>
+  </div>
 </nav>
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-<a href="#cenik" onclick="closeMenu()">Ceník</a>
-<a href="kontakt.html" onclick="closeMenu()">Kontakt</a>
-<a class="nav-btn" href="kontakt.html" onclick="closeMenu()">Poptávka zdarma</a>
+
+<!-- FULLSCREEN MENU OVERLAY -->
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-overlay-header">
+    <div class="menu-overlay-logo">Posečem<span>.cz</span></div>
+    <button class="menu-close-btn" id="menuClose">ZAVŘÍT ✕</button>
+  </div>
+  <div class="menu-items">
+    <a href="seceni.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">🌾</div>
+      <div class="menu-item-text">
+        <div class="menu-item-title">Roste mi tráva</div>
+        <div class="menu-item-sub">Sečení trávy</div>
+      </div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+    <a href="zavlazovani.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">💧</div>
+      <div class="menu-item-text">
+        <div class="menu-item-title">Jsem na suchu</div>
+        <div class="menu-item-sub">Zavlažování na míru</div>
+      </div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+    <a href="navrhy.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">📐</div>
+      <div class="menu-item-text">
+        <div class="menu-item-title">Chci to vidět na papíře</div>
+        <div class="menu-item-sub">Návrhy zahrad</div>
+      </div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+    <a href="upravy.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">✂️</div>
+      <div class="menu-item-text">
+        <div class="menu-item-title">Chci mít pořádek</div>
+        <div class="menu-item-sub">Úprava okrajů</div>
+      </div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+    <a href="arealy.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">🏢</div>
+      <div class="menu-item-text">
+        <div class="menu-item-title">Mám areál a přerůstá mi přes hlavu</div>
+        <div class="menu-item-sub">Údržba areálů</div>
+      </div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+    <a href="odvoz.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">🚛</div>
+      <div class="menu-item-text">
+        <div class="menu-item-title">Potřebuji se zbavit biomasy</div>
+        <div class="menu-item-sub">Odvoz biomasy</div>
+      </div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+    <a href="kontakt.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">📞</div>
+      <div class="menu-item-text">
+        <div class="menu-item-title">Kam mám zavolat</div>
+        <div class="menu-item-sub">Kontakt a poptávka</div>
+      </div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+  </div>
+  <div class="menu-bottom">
+    <a href="tel:+420777000222">+420 777 000 222</a>
+    <a href="mailto:info@posecem.cz">info@posecem.cz</a>
+    <a href="kontakt.html">Poptávka zdarma</a>
+  </div>
 </div>
-<!-- HERO - jen fotka + dlaždice -->
+
+<!-- HERO — zelené pozadí s dlaždicemi -->
 <section id="hero">
-<div aria-label="Profesionální zahradní služby Brno" class="hero-img" role="img"></div>
 <div class="hero-tiles">
   <a href="seceni.html" class="hero-tile">
     <div class="hero-tile-img"><img src="images/seceni.jpeg" alt="Sečení"/></div>
@@ -898,11 +1014,14 @@ footer{
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>50)},{passive:true});
 
-// Mobile menu
-const btn=document.getElementById('hamburger');
-const menu=document.getElementById('mobileMenu');
-function closeMenu(){menu.classList.remove('open')}
-btn.addEventListener('click',()=>menu.classList.toggle('open'));
+// Menu overlay
+const menuBtn=document.getElementById('menuBtn');
+const menuOverlay=document.getElementById('menuOverlay');
+const menuClose=document.getElementById('menuClose');
+function closeOverlay(){menuOverlay.classList.remove('open');document.body.style.overflow=''}
+menuBtn.addEventListener('click',()=>{menuOverlay.classList.add('open');document.body.style.overflow='hidden'});
+menuClose.addEventListener('click',closeOverlay);
+menuOverlay.addEventListener('click',(e)=>{if(e.target===menuOverlay)closeOverlay()});
 
 // Reveal on scroll
 const obs=new IntersectionObserver(entries=>{
