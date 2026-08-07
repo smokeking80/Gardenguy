@@ -746,23 +746,47 @@ footer{
   .hero-tile{aspect-ratio:4/3}
 }
 @media(max-width:600px){
-  /* Hero na mobilu */
-  #hero{height:auto;min-height:100svh;align-items:flex-start;padding-top:72px}
-  .hero-content{padding:24px var(--pad) 16px;max-width:100%}
-  .hero-tag{font-size:.65rem;padding:5px 12px;margin-bottom:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-  .hero-h1{font-size:clamp(2rem,9vw,3rem);margin-bottom:10px}
-  .hero-sub{font-size:.875rem;margin-bottom:16px;display:none}
-  .hero-actions{gap:8px}
-  .btn-white,.btn-outline-white{padding:11px 18px;font-size:.75rem}
-  /* Dlaždice 2x3 na mobilu */
-  .hero-tiles{grid-template-columns:repeat(2,1fr);position:relative;bottom:auto}
-  .hero-tile{aspect-ratio:1/1}
-  .hero-tile-label{font-size:.85rem;padding:10px 10px}
-  /* Ostatní */
-  .proces-steps{grid-template-columns:1fr}
-  .fg-row{grid-template-columns:1fr}
-  .footer-top{flex-direction:column;gap:24px}
-  #sluzby .grid-3{grid-template-columns:1fr}
+
+  #hero{
+      min-height:auto;
+      height:auto;
+      padding:72px 8px 8px;
+  }
+
+  .hero-tiles{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:6px;
+      margin-top:0;
+  }
+
+  .hero-tile{
+      aspect-ratio:1.15/1;
+      border-radius:8px;
+  }
+
+  .hero-tile-label{
+      font-size:.75rem;
+      padding:8px;
+      line-height:1.2;
+  }
+
+  .proces-steps{
+      grid-template-columns:1fr;
+  }
+
+  .fg-row{
+      grid-template-columns:1fr;
+  }
+
+  .footer-top{
+      flex-direction:column;
+      gap:24px;
+  }
+
+  #sluzby .grid-3{
+      grid-template-columns:1fr;
+  }
 }
 @media(max-width:400px){
   .hero-tiles{grid-template-columns:repeat(2,1fr)}
