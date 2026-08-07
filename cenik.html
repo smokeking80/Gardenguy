@@ -1,1 +1,319 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Ceník — Posečem.cz Brno</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#2A5C35;--green-mid:#3D7A4A;--green-light:#E8F0E9;
+  --cream:#FAFAF7;--white:#FFFFFF;--charcoal:#1C1C1A;
+  --gray:#6B6B68;--border:#E2E2DC;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --pad:clamp(20px,5vw,80px);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--charcoal);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--green)}
 
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);height:72px;background:rgba(10,30,15,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-logo-img{height:40px;width:auto;display:block;border-radius:4px}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-phone{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+.nav-phone:hover{color:#fff}
+.nav-menu-btn{display:flex;align-items:center;gap:10px;background:none;border:1.5px solid rgba(255,255,255,.2);color:#fff;padding:9px 20px;border-radius:2px;font-family:var(--sans);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .25s}
+.nav-menu-btn:hover{border-color:#9ACD5A;color:#9ACD5A}
+.nav-menu-icon{display:flex;flex-direction:column;gap:3px}
+.nav-menu-icon span{display:block;width:14px;height:1.5px;background:currentColor;border-radius:1px}
+
+/* MENU OVERLAY */
+.menu-overlay{position:fixed;inset:0;z-index:300;background:rgba(8,24,12,0.98);backdrop-filter:blur(24px);display:none;flex-direction:column;overflow-y:auto}
+.menu-overlay.open{display:flex}
+.menu-overlay-header{display:flex;align-items:center;justify-content:space-between;padding:20px var(--pad);height:72px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0}
+.menu-overlay-logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:#fff}
+.menu-overlay-logo span{color:#9ACD5A}
+.menu-close-btn{display:flex;align-items:center;gap:10px;background:none;border:1.5px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);font-family:var(--sans);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s;padding:9px 20px;border-radius:2px}
+.menu-close-btn:hover{border-color:#fff;color:#fff}
+.menu-items{display:flex;flex-direction:column;padding:0 var(--pad);flex:1}
+.menu-item{display:flex;align-items:center;gap:20px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.06);text-decoration:none;transition:all .2s}
+.menu-item:first-child{border-top:1px solid rgba(255,255,255,.06)}
+.menu-item:hover .menu-item-sub{color:#9ACD5A}
+.menu-item:hover .menu-item-arrow{color:#9ACD5A;transform:translateX(6px)}
+.menu-item-icon{width:46px;height:46px;border-radius:3px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;transition:background .2s}
+.menu-item:hover .menu-item-icon{background:rgba(154,205,90,.12)}
+.menu-item-text{flex:1}
+.menu-item-title{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:3px}
+.menu-item-sub{font-family:var(--serif);font-size:clamp(1rem,2.2vw,1.4rem);font-weight:700;color:#fff;line-height:1.1;transition:color .2s}
+.menu-item-arrow{color:rgba(255,255,255,.15);font-size:1.1rem;transition:all .25s}
+.menu-bottom{padding:28px var(--pad) 40px;border-top:1px solid rgba(255,255,255,.07);display:flex;gap:28px;flex-wrap:wrap;align-items:center;flex-shrink:0}
+.menu-bottom a{font-size:.78rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.menu-bottom a:hover{color:#fff}
+
+/* PAGE HERO */
+.page-hero{margin-top:72px;position:relative;height:36vh;min-height:220px;max-height:340px;overflow:hidden}
+.page-hero-img{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.6) 100%),url("images/seceni.jpeg") center/cover no-repeat}
+.page-hero-content{position:absolute;bottom:0;left:0;right:0;padding:0 var(--pad) 40px;z-index:2}
+.page-breadcrumb{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.page-breadcrumb a{color:rgba(255,255,255,.8);text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:7px 16px;background:rgba(255,255,255,.12);border-radius:100px;backdrop-filter:blur(8px);transition:background .2s}
+.page-breadcrumb a:hover{background:rgba(255,255,255,.2);color:#fff}
+.page-h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:.95;letter-spacing:-.03em;color:#fff;margin-top:14px}
+.page-h1 em{font-style:italic;color:rgba(255,255,255,.65)}
+
+/* CENIK CONTENT */
+.cenik-wrap{max-width:900px;margin:0 auto;padding:72px var(--pad) 80px}
+.cenik-section{margin-bottom:56px}
+.cenik-section:last-child{margin-bottom:0}
+.cenik-section-title{
+  font-family:var(--serif);font-size:1.5rem;font-weight:700;
+  color:var(--charcoal);letter-spacing:-.02em;
+  margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid var(--green);
+  display:flex;align-items:center;gap:12px;
+}
+.cenik-section-title span{font-size:1.4rem}
+.cenik-table{width:100%;border-collapse:collapse}
+.cenik-table tr{border-bottom:1px solid var(--border)}
+.cenik-table tr:last-child{border-bottom:none}
+.cenik-table td{padding:14px 0;font-size:.95rem;vertical-align:top;line-height:1.5}
+.cenik-table td:first-child{color:var(--charcoal);padding-right:20px;flex:1}
+.cenik-table td:last-child{
+  font-weight:700;color:var(--green);
+  white-space:nowrap;text-align:right;
+  font-size:1rem;
+  padding-left:20px;
+}
+.cenik-table tr:hover td{background:var(--green-light)}
+.cenik-table tr:hover td:first-child{padding-left:8px;border-radius:4px 0 0 4px}
+.cenik-table tr:hover td:last-child{padding-right:8px;border-radius:0 4px 4px 0}
+.cenik-note-box{
+  background:var(--green-light);border-left:3px solid var(--green);
+  padding:14px 18px;border-radius:0 4px 4px 0;
+  font-size:.85rem;color:var(--green);line-height:1.6;
+  margin-top:16px;
+}
+.cenik-note-box strong{font-weight:600}
+.cenik-cta{
+  background:var(--charcoal);
+  border-radius:8px;padding:40px;
+  text-align:center;margin-top:56px;
+}
+.cenik-cta h3{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:12px}
+.cenik-cta p{color:rgba(255,255,255,.5);font-size:.95rem;margin-bottom:28px;line-height:1.6}
+.cenik-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-cta{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;padding:14px 28px;border-radius:2px;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s}
+.btn-cta:hover{background:var(--green-mid);transform:translateY(-2px)}
+.btn-cta-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,.6);padding:14px 28px;border-radius:2px;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:1.5px solid rgba(255,255,255,.2);transition:all .2s}
+.btn-cta-ghost:hover{border-color:#fff;color:#fff}
+
+/* FOOTER */
+footer{background:var(--charcoal);padding:48px var(--pad) 32px}
+.footer-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:24px}
+.footer-logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:#fff}
+.footer-logo span{color:#9ACD5A}
+.footer-tagline{font-size:.78rem;color:rgba(255,255,255,.4);margin-top:4px}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap}
+.footer-links a{font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.2)}
+
+@media(max-width:600px){
+  .nav-phone{display:none}
+  .cenik-table td{font-size:.875rem}
+  .cenik-table td:last-child{font-size:.9rem}
+  .cenik-cta{padding:28px 20px}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html"><img class="nav-logo-img" src="images/logo.jpeg" alt="Posečem.cz"/></a>
+  <div class="nav-right">
+    <a class="nav-phone" href="tel:+420777000222">📞 +420 777 000 222</a>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Otevřít menu">
+      <div class="nav-menu-icon"><span></span><span></span><span></span></div>
+      MENU
+    </button>
+  </div>
+</nav>
+
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-overlay-header">
+    <div class="menu-overlay-logo">Posečem<span>.cz</span></div>
+    <button class="menu-close-btn" id="menuClose">ZAVŘÍT ✕</button>
+  </div>
+  <div class="menu-items">
+    <a href="seceni.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">🌾</div>
+      <div class="menu-item-text"><div class="menu-item-title">Roste mi tráva</div><div class="menu-item-sub">Sečení trávy</div></div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+    <a href="zavlazovani.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">💧</div>
+      <div class="menu-item-text"><div class="menu-item-title">Jsem na suchu</div><div class="menu-item-sub">Zavlažování na míru</div></div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+    <a href="navrhy.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">📐</div>
+      <div class="menu-item-text"><div class="menu-item-title">Chci to vidět na papíře</div><div class="menu-item-sub">Návrhy zahrad</div></div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+    <a href="upravy.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">✂️</div>
+      <div class="menu-item-text"><div class="menu-item-title">Chci mít pořádek</div><div class="menu-item-sub">Úprava okrajů</div></div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+    <a href="arealy.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">🏢</div>
+      <div class="menu-item-text"><div class="menu-item-title">Mám areál a přerůstá mi přes hlavu</div><div class="menu-item-sub">Údržba areálů</div></div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+    <a href="odvoz.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">🚛</div>
+      <div class="menu-item-text"><div class="menu-item-title">Potřebuji se zbavit biomasy</div><div class="menu-item-sub">Odvoz biomasy</div></div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+    <a href="cenik.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">💰</div>
+      <div class="menu-item-text"><div class="menu-item-title">Kolik to stojí</div><div class="menu-item-sub">Ceník služeb</div></div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+    <a href="kontakt.html" class="menu-item" onclick="closeOverlay()">
+      <div class="menu-item-icon">📞</div>
+      <div class="menu-item-text"><div class="menu-item-title">Kam mám zavolat</div><div class="menu-item-sub">Kontakt a poptávka</div></div>
+      <div class="menu-item-arrow">→</div>
+    </a>
+  </div>
+  <div class="menu-bottom">
+    <a href="tel:+420777000222">+420 777 000 222</a>
+    <a href="mailto:info@posecem.cz">info@posecem.cz</a>
+    <a href="kontakt.html">Poptávka zdarma</a>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-img"></div>
+  <div class="page-hero-content">
+    <div class="page-breadcrumb"><a href="index.html">← Zpět na hlavní stránku</a></div>
+    <h1 class="page-h1">Naše <em>orientační</em> ceny</h1>
+  </div>
+</div>
+
+<div class="cenik-wrap">
+
+  <!-- SEČENÍ TRÁVY -->
+  <div class="cenik-section">
+    <div class="cenik-section-title"><span>🌾</span> Sečení trávy</div>
+    <table class="cenik-table">
+      <tr>
+        <td>Sečení traktorem — plochy od 5 000 m² a více</td>
+        <td>1,30 Kč/m²</td>
+      </tr>
+      <tr>
+        <td>Sečení traktorem — plochy do 3 000 m²</td>
+        <td>1,60 Kč/m²</td>
+      </tr>
+      <tr>
+        <td>Sečení sekačkou nebo křovinořezem</td>
+        <td>2,50 Kč/m²</td>
+      </tr>
+      <tr>
+        <td>Sečení křovinořezem ve svazích a stráních</td>
+        <td>3,- Kč/m²</td>
+      </tr>
+    </table>
+    <div class="cenik-note-box">
+      <strong>Poznámka:</strong> Za odstraňování překážek (kameny, větve a jiné předměty) účtujeme příplatek v hodinové sazbě.
+    </div>
+  </div>
+
+  <!-- ODVOZ BIO ODPADU -->
+  <div class="cenik-section">
+    <div class="cenik-section-title"><span>🚛</span> Odvoz bio odpadu</div>
+    <table class="cenik-table">
+      <tr>
+        <td>Pronájem kontejneru po dobu sečení</td>
+        <td>ZDARMA</td>
+      </tr>
+      <tr>
+        <td>Doprava kontejneru do místa sečení</td>
+        <td>35,- Kč/km</td>
+      </tr>
+      <tr>
+        <td>Uskladnění odpadu — nízký kontejner</td>
+        <td>2 500,- Kč</td>
+      </tr>
+      <tr>
+        <td>Uskladnění odpadu — vysoký kontejner</td>
+        <td>5 000,- Kč</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- MANIPULACE S TECHNIKOU -->
+  <div class="cenik-section">
+    <div class="cenik-section-title"><span>🚜</span> Cena manipulace s technikou</div>
+    <table class="cenik-table">
+      <tr>
+        <td>Minimální cena za výjezd a zakázku</td>
+        <td>3 500,- Kč</td>
+      </tr>
+      <tr>
+        <td>Doprava do místa sečení</td>
+        <td>20,- Kč/km</td>
+      </tr>
+    </table>
+    <div class="cenik-note-box">
+      <strong>Výjimka:</strong> U ploch nad 3 000 m² a u domluvených pravidelných sečení minimální poplatek za výjezd neúčtujeme.
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cenik-cta">
+    <h3>Nezávazná cenová nabídka zdarma</h3>
+    <p>Ceny jsou orientační a závisí na konkrétních podmínkách. Kontaktujte nás a připravíme vám přesnou nabídku na míru.</p>
+    <div class="cenik-cta-btns">
+      <a href="kontakt.html" class="btn-cta">Poptat cenu zdarma →</a>
+      <a href="tel:+420777000222" class="btn-cta-ghost">📞 Zavolat</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Posečem<span>.cz</span></div>
+      <div class="footer-tagline">Profesionální zahradní služby · Brno a okolí</div>
+    </div>
+    <nav class="footer-links" aria-label="Patička">
+      <a href="seceni.html">Sečení</a>
+      <a href="zavlazovani.html">Zavlažování</a>
+      <a href="navrhy.html">Návrhy</a>
+      <a href="arealy.html">Areály</a>
+      <a href="cenik.html">Ceník</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </div>
+  <p class="footer-copy">© 2025 Posečem.cz · Brno a okolí</p>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>50)},{passive:true});
+const menuBtn=document.getElementById('menuBtn');
+const menuOverlay=document.getElementById('menuOverlay');
+const menuClose=document.getElementById('menuClose');
+function closeOverlay(){menuOverlay.classList.remove('open');document.body.style.overflow=''}
+menuBtn.addEventListener('click',()=>{menuOverlay.classList.add('open');document.body.style.overflow='hidden'});
+menuClose.addEventListener('click',closeOverlay);
+menuOverlay.addEventListener('click',(e)=>{if(e.target===menuOverlay)closeOverlay()});
+</script>
+</body>
+</html>
