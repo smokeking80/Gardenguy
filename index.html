@@ -120,11 +120,9 @@ img{display:block;max-width:100%}
 
 /* HERO — zelené pozadí, dlaždice */
 #hero{
-  padding-top:72px;
   background:linear-gradient(160deg,#0A1E0D 0%,#0F2A14 50%,#0A1E0D 100%);
-  min-height:100vh;
   display:flex;flex-direction:column;
-  padding:80px 12px 12px;
+  padding:88px clamp(20px,5vw,80px) 32px;
 }
 .hero-img{display:none}
 .hero-content{display:none}
@@ -132,8 +130,12 @@ img{display:block;max-width:100%}
 .hero-tiles{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-top:16px;
+  gap:14px;
+  margin-top:20px;
+  max-width:1200px;
+  width:100%;
+  margin-left:auto;
+  margin-right:auto;
 }
 .hero-tile{
   position:relative;
@@ -146,11 +148,7 @@ img{display:block;max-width:100%}
 }
 /* Desktop only — hero shorter, space for future content */
 @media(min-width:761px){
-  #hero{
-    min-height:auto;
-    padding-bottom:20px;
-  }
-  .hero-tile{min-height:154px}
+  .hero-tile{min-height:170px}
 }
 .hero-tile-img{
   position:absolute;inset:0;
