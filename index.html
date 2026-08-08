@@ -133,7 +133,6 @@ img{display:block;max-width:100%}
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:10px;
-  flex:1;
   margin-top:16px;
 }
 .hero-tile{
@@ -143,7 +142,15 @@ img{display:block;max-width:100%}
   text-decoration:none;
   border-radius:12px;
   border:1px solid rgba(255,255,255,.12);
-  min-height:220px;
+  min-height:154px;
+}
+/* Desktop only — hero shorter, space for future content */
+@media(min-width:761px){
+  #hero{
+    min-height:auto;
+    padding-bottom:20px;
+  }
+  .hero-tile{min-height:154px}
 }
 .hero-tile-img{
   position:absolute;inset:0;
