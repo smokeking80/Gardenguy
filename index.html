@@ -676,6 +676,131 @@ footer{
 @media(max-width:400px){
   .hero-tiles{grid-template-columns:repeat(2,1fr)}
 }
+
+/* CO VŠE DĚLÁME */
+#co-delame{
+  background:var(--white);
+  padding:80px var(--pad);
+  border-top:1px solid var(--border);
+}
+.co-delame-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:start;
+}
+.co-delame-label{
+  font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--green);margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.co-delame-label::before{content:'🌿';font-size:.9rem}
+.co-delame-accordion{display:flex;flex-direction:column;gap:0}
+.acc-item{border-bottom:1px solid var(--border)}
+.acc-item:first-child{border-top:1px solid var(--border)}
+.acc-btn{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:18px 0;
+  background:none;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:1rem;font-weight:600;
+  color:var(--charcoal);text-align:left;
+  transition:color .2s;
+  gap:16px;
+}
+.acc-btn:hover{color:var(--green)}
+.acc-btn.active{color:var(--green)}
+.acc-icon{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--green-light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0;
+}
+.acc-title{flex:1;text-align:left}
+.acc-arrow{
+  font-size:.8rem;color:var(--gray);
+  transition:transform .3s,color .2s;
+  flex-shrink:0;
+}
+.acc-btn.active .acc-arrow{transform:rotate(45deg);color:var(--green)}
+.acc-body{
+  display:none;
+  padding:0 0 18px 52px;
+  font-size:.9rem;color:var(--gray);line-height:1.7;
+}
+.acc-body.open{display:block}
+
+.co-delame-right{}
+.co-delame-title{
+  font-family:var(--serif);
+  font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;
+  letter-spacing:-.02em;line-height:1.1;
+  color:var(--charcoal);margin-bottom:24px;
+}
+.co-delame-text p{
+  color:var(--gray);line-height:1.75;font-size:.97rem;margin-bottom:14px;
+}
+
+/* FOTOGALERIE */
+#galerie{
+  background:var(--cream);
+  padding:80px var(--pad);
+  border-top:1px solid var(--border);
+}
+.galerie-header{
+  max-width:1100px;margin:0 auto 32px;
+  display:flex;align-items:center;gap:10px;
+  font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--charcoal);
+  padding-bottom:16px;border-bottom:1px solid var(--border);
+}
+.galerie-header::before{content:'🌿';font-size:.9rem}
+.galerie-track-wrap{
+  max-width:1100px;margin:0 auto;
+  overflow:hidden;
+  position:relative;
+}
+.galerie-track{
+  display:flex;gap:20px;
+  transition:transform .4s cubic-bezier(.22,1,.36,1);
+  will-change:transform;
+}
+.galerie-card{
+  flex:0 0 calc(25% - 15px);
+  border-radius:12px;overflow:hidden;
+  background:var(--white);
+  border:1px solid var(--border);
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
+}
+.galerie-card img{
+  width:100%;aspect-ratio:4/3;
+  object-fit:cover;display:block;
+  transition:transform .4s;
+}
+.galerie-card:hover img{transform:scale(1.04)}
+.galerie-card-body{padding:16px}
+.galerie-card-title{
+  font-weight:700;font-size:.95rem;
+  color:var(--charcoal);margin-bottom:6px;line-height:1.3;
+}
+.galerie-card-desc{font-size:.82rem;color:var(--gray);line-height:1.5}
+.galerie-nav{
+  max-width:1100px;margin:28px auto 0;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.galerie-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--border);border:none;cursor:pointer;
+  transition:background .2s,transform .2s;padding:0;
+}
+.galerie-dot.active{background:var(--green);transform:scale(1.3)}
+
+@media(max-width:860px){
+  .co-delame-inner{grid-template-columns:1fr;gap:40px}
+  .galerie-card{flex:0 0 calc(50% - 10px)}
+}
+@media(max-width:480px){
+  .galerie-card{flex:0 0 85%}
+}
+
 </style>
 </head>
 <body>
@@ -739,6 +864,120 @@ footer{
 </div>
 </div>
 </section>
+
+<!-- CO VŠE DĚLÁME -->
+<section id="co-delame">
+  <div class="co-delame-inner">
+    <div>
+      <div class="co-delame-label">Jak a co děláme</div>
+      <div class="co-delame-accordion">
+        <div class="acc-item">
+          <button class="acc-btn active" onclick="toggleAcc(this)">
+            <div class="acc-icon">🌾</div>
+            <span class="acc-title">Sečení trávy</span>
+            <span class="acc-arrow">＋</span>
+          </button>
+          <div class="acc-body open">Pravidelné sekání travního porostu profesionální technikou. Vlastníme profesionální sekací stroje — zvládneme i opravdu velké plochy a svahy.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-icon">💧</div>
+            <span class="acc-title">Zavlažování na míru</span>
+            <span class="acc-arrow">＋</span>
+          </button>
+          <div class="acc-body">Návrh a realizace automatického závlahového systému včetně projektové dokumentace. Každý systém navrhujeme individuálně.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-icon">📐</div>
+            <span class="acc-title">Návrhy zahrad</span>
+            <span class="acc-arrow">＋</span>
+          </button>
+          <div class="acc-body">Navrhujeme zahrady, parky i firemní areály. Od základního náčrtku přes vizualizaci až po kompletní kladecí plán a výpis rostlin.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-icon">🏢</div>
+            <span class="acc-title">Údržba areálů</span>
+            <span class="acc-arrow">＋</span>
+          </button>
+          <div class="acc-body">Pravidelně sečeme trávu a udržujeme zeleň firemních areálů, sportovních hřišť i rezidenčních oblastí. Smlouva na celou sezónu.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-icon">✂️</div>
+            <span class="acc-title">Úprava okrajů</span>
+            <span class="acc-arrow">＋</span>
+          </button>
+          <div class="acc-body">Precizní úprava okrajů trávníku podél chodníků, záhonů a obrubníků. Detail, který změní celkový vzhled zahrady k nepoznání.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-icon">🚛</div>
+            <span class="acc-title">Odvoz biomasy</span>
+            <span class="acc-arrow">＋</span>
+          </button>
+          <div class="acc-body">Přebytečný odpad odvezeme a zpracujeme. Větve z keřů a stromů lze zpracovat štěpkováním — štěpku pak použít jako podklad do záhonů.</div>
+        </div>
+      </div>
+    </div>
+    <div class="co-delame-right">
+      <h2 class="co-delame-title">Co vše děláme</h2>
+      <div class="co-delame-text">
+        <p>Navrhujeme zahrady, parky nebo i firemní areály. Připravíme třeba i jen základní náčrtek, přes propracovanější vizualizaci, až po kompletní kladecí plán a výpis rostlin.</p>
+        <p>Poskytujeme údržbu zeleně a sečení trávy v Brně a okolí. Vlastníme profesionální sekací stroje, se kterými zvládneme posekat i opravdu velké plochy.</p>
+        <p>Pravidelně sečeme trávu a udržujeme zeleň firemních areálů, sportovních hřišť a rezidenčních oblastí. Nabízíme i vertikutaci velkých travnatých ploch.</p>
+        <p>Přebytečný odpad odvezeme a zpracujeme. Větve z keřů a stromu je možné zpracovat štěpkováním a štěpku použít jako podklad do záhonů.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOTOGALERIE -->
+<section id="galerie">
+  <div class="galerie-header">Jak a co děláme</div>
+  <div class="galerie-track-wrap">
+    <div class="galerie-track" id="galerieTrack">
+      <div class="galerie-card">
+        <img src="images/seceni.jpeg" alt="Sečení trávy" loading="lazy"/>
+        <div class="galerie-card-body">
+          <div class="galerie-card-title">Sečení trávy</div>
+          <div class="galerie-card-desc">Profesionální sečení travního porostu pro každou zahradu i areál.</div>
+        </div>
+      </div>
+      <div class="galerie-card">
+        <img src="images/3.jpeg" alt="Zavlažování" loading="lazy"/>
+        <div class="galerie-card-body">
+          <div class="galerie-card-title">Automatické zavlažování</div>
+          <div class="galerie-card-desc">Návrh a instalace závlahového systému na míru vaší zahrady.</div>
+        </div>
+      </div>
+      <div class="galerie-card">
+        <img src="images/udrzba-arealu.jpeg" alt="Údržba areálů" loading="lazy"/>
+        <div class="galerie-card-body">
+          <div class="galerie-card-title">Údržba areálů</div>
+          <div class="galerie-card-desc">Pravidelná péče o firemní areály, hřiště a rezidenční oblasti.</div>
+        </div>
+      </div>
+      <div class="galerie-card">
+        <img src="images/4.jpeg" alt="Odvoz biomasy" loading="lazy"/>
+        <div class="galerie-card-body">
+          <div class="galerie-card-title">Odvoz biomasy</div>
+          <div class="galerie-card-desc">Odvoz a ekologická likvidace trávy, listí a větví.</div>
+        </div>
+      </div>
+      <div class="galerie-card">
+        <img src="images/12.jpg" alt="Úprava okrajů" loading="lazy"/>
+        <div class="galerie-card-body">
+          <div class="galerie-card-title">Úprava okrajů</div>
+          <div class="galerie-card-desc">Precizní okraje trávníku podél chodníků a záhonů.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="galerie-nav" id="galerieNav"></div>
+</section>
+
 <!-- MAPA -->
 <section id="mapa" class="mapa-section">
 <p class="section-label reveal">Kde nás najdete</p>
@@ -800,5 +1039,64 @@ const obs=new IntersectionObserver(entries=>{
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 <script src="nav.js"></script>
+
+<script>
+// Accordion
+function toggleAcc(btn){
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.acc-btn').forEach(b=>{
+    b.classList.remove('active');
+    b.nextElementSibling.classList.remove('open');
+  });
+  // Open clicked if was closed
+  if(!isOpen){
+    btn.classList.add('active');
+    body.classList.add('open');
+  }
+}
+
+// Gallery slider
+(function(){
+  const track = document.getElementById('galerieTrack');
+  const nav = document.getElementById('galerieNav');
+  if(!track || !nav) return;
+
+  const cards = track.querySelectorAll('.galerie-card');
+  const total = cards.length;
+  let current = 0;
+
+  // Create dots
+  cards.forEach((_,i)=>{
+    const dot = document.createElement('button');
+    dot.className = 'galerie-dot' + (i===0?' active':'');
+    dot.setAttribute('aria-label', 'Snímek ' + (i+1));
+    dot.addEventListener('click', ()=>goTo(i));
+    nav.appendChild(dot);
+  });
+
+  function goTo(idx){
+    current = idx;
+    const cardW = cards[0].offsetWidth + 20;
+    track.style.transform = 'translateX(-' + (cardW * current) + 'px)';
+    nav.querySelectorAll('.galerie-dot').forEach((d,i)=>{
+      d.classList.toggle('active', i===current);
+    });
+  }
+
+  // Touch/swipe support
+  let startX = 0;
+  track.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', e=>{
+    const diff = startX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 50){
+      if(diff > 0 && current < total-1) goTo(current+1);
+      else if(diff < 0 && current > 0) goTo(current-1);
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
