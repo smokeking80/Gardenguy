@@ -409,33 +409,18 @@ img{display:block;max-width:100%}
 .cenik-note strong{font-weight:600}
 
 /* PROCESS */
-#proces{padding:56px var(--pad);background:var(--charcoal)}
-.proces-label{color:rgba(255,255,255,.4)}
+
+
 .proces-label::before{background:rgba(255,255,255,.3)}
-.proces-h{
-  font-family:var(--serif);
-  font-size:clamp(2.2rem,4vw,3.4rem);font-weight:700;
-  line-height:1.05;letter-spacing:-.02em;
-  color:#fff;margin-bottom:64px;
-}
+
 .proces-h em{font-style:italic;color:rgba(255,255,255,.5)}
-.proces-steps{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:0;border-top:1px solid rgba(255,255,255,.1);
-}
-.proc-step{
-  padding:40px 28px 40px 0;
-  border-right:1px solid rgba(255,255,255,.08);
-}
+
+
 .proc-step:last-child{border-right:none}
-.proc-num{
-  font-family:var(--serif);font-size:3.5rem;font-weight:900;
-  color:rgba(255,255,255,.08);line-height:1;margin-bottom:20px;
-  letter-spacing:-.04em;
-}
-.proc-icon{font-size:1.5rem;margin-bottom:14px;display:block}
-.proc-h{font-size:.97rem;font-weight:600;color:#fff;margin-bottom:8px}
-.proc-p{font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.65}
+
+
+
+
 
 /* CONTACT */
 #kontakt{
@@ -542,35 +527,20 @@ textarea{resize:vertical;min-height:100px}
 .success-box.show{display:block}
 
 /* MAPA */
-.mapa-section{
-  padding:80px var(--pad);
-  background:var(--white);
-  text-align:center;
-}
+
 .mapa-section .section-label{justify-content:center}
-.mapa-h{
-  font-family:var(--serif);
-  font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;
-  letter-spacing:-.02em;color:var(--charcoal);
-  margin-bottom:16px;
-}
-.mapa-link{margin-bottom:32px}
+
+
 .mapa-link a{
   font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   color:var(--green);text-decoration:none;border-bottom:1.5px solid var(--green);
   padding-bottom:2px;transition:color .2s,border-color .2s;
 }
 .mapa-link a:hover{color:var(--green-mid);border-color:var(--green-mid)}
-.mapa-embed{
-  max-width:1100px;margin:0 auto;
-  aspect-ratio:16/6;
-  border-radius:4px;overflow:hidden;
-  border:1px solid var(--border);
-  filter:saturate(.9);
-}
+
 .mapa-embed iframe{width:100%;height:100%;display:block}
 @media(max-width:760px){
-  .mapa-embed{aspect-ratio:4/5}
+  
 }
 
 /* FOOTER */
@@ -619,8 +589,8 @@ footer{
   .sluzby-header,.cenik-intro{grid-template-columns:1fr;gap:24px}
   .services-grid{grid-template-columns:1fr}
   .cenik-grid{grid-template-columns:1fr}
-  .proces-steps{grid-template-columns:1fr 1fr}
-  .proc-step{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);padding:32px 0}
+  
+  
   #kontakt{grid-template-columns:1fr}
   .kontakt-img{min-height:560px}
   .stats-bar{grid-template-columns:1fr}
@@ -656,9 +626,7 @@ footer{
       line-height:1.2;
   }
 
-  .proces-steps{
-      grid-template-columns:1fr;
-  }
+  
 
   .fg-row{
       grid-template-columns:1fr;
@@ -742,7 +710,7 @@ footer{
 /* FOTOGALERIE */
 #galerie{
   background:var(--cream);
-  padding:56px var(--pad);
+  padding:48px var(--pad);
   border-top:1px solid var(--border);
 }
 .galerie-header{
@@ -805,7 +773,7 @@ footer{
 /* SERVIS ACCORDION */
 #servis{
   background:var(--white);
-  padding:56px var(--pad);
+  padding:48px var(--pad);
   border-top:1px solid var(--border);
 }
 .servis-inner{
@@ -966,74 +934,6 @@ footer{
   </div>
 </section>
 
-<!-- CO VŠE DĚLÁME -->
-<section id="co-delame">
-  <div class="co-delame-inner">
-    <div>
-      <div class="co-delame-label">Jak a co děláme</div>
-      <div class="co-delame-accordion">
-        <div class="acc-item">
-          <button class="acc-btn active" onclick="toggleAcc(this)">
-            <div class="acc-icon">🌾</div>
-            <span class="acc-title">Sečení trávy</span>
-            <span class="acc-arrow">＋</span>
-          </button>
-          <div class="acc-body open">Pravidelné sekání travního porostu profesionální technikou. Vlastníme profesionální sekací stroje — zvládneme i opravdu velké plochy a svahy.</div>
-        </div>
-        <div class="acc-item">
-          <button class="acc-btn" onclick="toggleAcc(this)">
-            <div class="acc-icon">💧</div>
-            <span class="acc-title">Zavlažování na míru</span>
-            <span class="acc-arrow">＋</span>
-          </button>
-          <div class="acc-body">Návrh a realizace automatického závlahového systému včetně projektové dokumentace. Každý systém navrhujeme individuálně.</div>
-        </div>
-        <div class="acc-item">
-          <button class="acc-btn" onclick="toggleAcc(this)">
-            <div class="acc-icon">📐</div>
-            <span class="acc-title">Návrhy zahrad</span>
-            <span class="acc-arrow">＋</span>
-          </button>
-          <div class="acc-body">Navrhujeme zahrady, parky i firemní areály. Od základního náčrtku přes vizualizaci až po kompletní kladecí plán a výpis rostlin.</div>
-        </div>
-        <div class="acc-item">
-          <button class="acc-btn" onclick="toggleAcc(this)">
-            <div class="acc-icon">🏢</div>
-            <span class="acc-title">Údržba areálů</span>
-            <span class="acc-arrow">＋</span>
-          </button>
-          <div class="acc-body">Pravidelně sečeme trávu a udržujeme zeleň firemních areálů, sportovních hřišť i rezidenčních oblastí. Smlouva na celou sezónu.</div>
-        </div>
-        <div class="acc-item">
-          <button class="acc-btn" onclick="toggleAcc(this)">
-            <div class="acc-icon">✂️</div>
-            <span class="acc-title">Úprava okrajů</span>
-            <span class="acc-arrow">＋</span>
-          </button>
-          <div class="acc-body">Precizní úprava okrajů trávníku podél chodníků, záhonů a obrubníků. Detail, který změní celkový vzhled zahrady k nepoznání.</div>
-        </div>
-        <div class="acc-item">
-          <button class="acc-btn" onclick="toggleAcc(this)">
-            <div class="acc-icon">🚛</div>
-            <span class="acc-title">Odvoz biomasy</span>
-            <span class="acc-arrow">＋</span>
-          </button>
-          <div class="acc-body">Přebytečný odpad odvezeme a zpracujeme. Větve z keřů a stromů lze zpracovat štěpkováním — štěpku pak použít jako podklad do záhonů.</div>
-        </div>
-      </div>
-    </div>
-    <div class="co-delame-right">
-      <h2 class="co-delame-title">Co vše děláme</h2>
-      <div class="co-delame-text">
-        <p>Navrhujeme zahrady, parky nebo i firemní areály. Připravíme třeba i jen základní náčrtek, přes propracovanější vizualizaci, až po kompletní kladecí plán a výpis rostlin.</p>
-        <p>Poskytujeme údržbu zeleně a sečení trávy v Brně a okolí. Vlastníme profesionální sekací stroje, se kterými zvládneme posekat i opravdu velké plochy.</p>
-        <p>Pravidelně sečeme trávu a udržujeme zeleň firemních areálů, sportovních hřišť a rezidenčních oblastí. Nabízíme i vertikutaci velkých travnatých ploch.</p>
-        <p>Přebytečný odpad odvezeme a zpracujeme. Větve z keřů a stromu je možné zpracovat štěpkováním a štěpku použít jako podklad do záhonů.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FOTOGALERIE -->
 <section id="galerie">
   <div class="galerie-header">Jak a co děláme</div>
@@ -1079,47 +979,23 @@ footer{
   <div class="galerie-nav" id="galerieNav"></div>
 </section>
 
-<!-- PROCESS -->
-<section id="proces">
-<p class="section-label proces-label reveal">Jak to funguje</p>
-<h2 class="proces-h reveal reveal-d1">Jednoduché<br/>jako <em>čtyři kroky</em></h2>
-<div class="proces-steps">
-<div class="proc-step reveal">
-<div class="proc-num">01</div>
-<span class="proc-icon">📝</span>
-<div class="proc-h">Vyplníte dotazník</div>
-<p class="proc-p">Vyplňte krátký formulář — adresu, službu a stav zahrady. Zabere to minutu.</p>
-</div>
-<div class="proc-step reveal reveal-d1">
-<div class="proc-num">02</div>
-<span class="proc-icon">💬</span>
-<div class="proc-h">Dostanete nabídku</div>
-<p class="proc-p">Do 24 hodin vám pošleme konkrétní cenu. Bez závazku, zdarma.</p>
-</div>
-<div class="proc-step reveal reveal-d2">
-<div class="proc-num">03</div>
-<span class="proc-icon">📅</span>
-<div class="proc-h">Domluvíme termín</div>
-<p class="proc-p">Vyberete termín který vám sedí. Nemusíte být ani doma.</p>
-</div>
-<div class="proc-step reveal reveal-d3">
-<div class="proc-num">04</div>
-<span class="proc-icon">✅</span>
-<div class="proc-h">Zahrada hotová</div>
-<p class="proc-p">Přijedeme, odvedeme práci, uklidíme. Platíte až po dokončení.</p>
-</div>
-</div>
+<!-- MAPA -->
+<section style="background:var(--white);border-top:1px solid var(--border);padding:32px var(--pad)">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="font-size:1.2rem">📍</span>
+      <div>
+        <div style="font-weight:600;font-size:.95rem;color:var(--charcoal)">Mezníkova 394/4, Brno-Žabovřesky</div>
+        <div style="font-size:.82rem;color:var(--gray);margin-top:2px">Brno a okolí do 30 km · Po–So 7:00–18:00</div>
+      </div>
+    </div>
+    <a href="https://www.google.com/maps/place/Mezníkova+394/4,+616+00+Brno-Žabovřesky" target="_blank" rel="noopener"
+       style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--green);color:#fff;border-radius:2px;text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:background .2s">
+      Otevřít v Google Maps →
+    </a>
+  </div>
 </section>
 
-<!-- MAPA -->
-<section id="mapa" class="mapa-section">
-<p class="section-label reveal">Kde nás najdete</p>
-<h2 class="mapa-h reveal reveal-d1">Mezníkova 394/4, Brno-Žabovřesky</h2>
-<p class="mapa-link reveal reveal-d2"><a href="https://www.google.com/maps/place/Mezn%C3%ADkova+394%2F4,+616+00+Brno-%C5%BDabov%C5%99esky,+Czechia/@49.2107946,16.5812557,16z/data=!3m1!4b1!4m6!3m5!1s0x47129417db5c9fdb:0x93f027e25e4b8bc4!8m2!3d49.2107911!4d16.583836!16s%2Fg%2F11c270n_8_!5m1!1e2?hl=en-US" target="_blank" rel="noopener">Otevřít v Google Maps →</a></p>
-<div class="mapa-embed reveal reveal-d3">
-<iframe src="https://www.google.com/maps?q=Mezn%C3%ADkova+394%2F4,+616+00+Brno-%C5%BDabov%C5%99esky,+Czechia&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa — Mezníkova 394/4, Brno-Žabovřesky"></iframe>
-</div>
-</section>
 <!-- FOOTER -->
 <footer>
 <div class="footer-top">
