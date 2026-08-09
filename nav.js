@@ -20,7 +20,7 @@ nav#main-nav{
   text-decoration:none;
 }
 @media(min-width:601px){
-  .mnav-logo{margin-left:20px}
+  .mnav-logo{margin-left:30px}
 }
 .mnav-logo img{height:40px;width:auto;border-radius:3px}
 .mnav-logo-text{
