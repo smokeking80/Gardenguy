@@ -3,6 +3,13 @@
 
 (function(){
 
+// Load Phosphor Icons if not already loaded
+if(!document.querySelector('script[src*="phosphor-icons"]')){
+  var ph=document.createElement('script');
+  ph.src='https://unpkg.com/@phosphor-icons/web@2.1.1';
+  document.head.appendChild(ph);
+}
+
 // Inject nav CSS
 const style = document.createElement('style');
 style.textContent = `
