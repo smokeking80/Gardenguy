@@ -168,7 +168,7 @@ const navHTML = `
 const overlayHTML = `
 <div class="moverlay" id="moverlay" role="dialog" aria-modal="true" aria-label="Menu">
   <div class="moverlay-head">
-    <a class="moverlay-logo" href="index.html">Posečem<span>.cz</span></a>
+    <a class="moverlay-logo" href="index.html">POKOSEK<span>.CZ</span></a>
     <button class="moverlay-close" id="moverlayClose">ZAVŘÍT ✕</button>
   </div>
   <div class="moverlay-items">
