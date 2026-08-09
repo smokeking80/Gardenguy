@@ -150,7 +150,7 @@ document.head.appendChild(style);
 const navHTML = `
 <nav id="main-nav">
   <a class="mnav-logo" href="index.html">
-    <img src="images/logo.jpeg" alt="Posečem.cz" onerror="this.style.display='none'"/>
+    <img src="images/logo.jpeg" alt="POKOSEK.CZ" onerror="this.style.display='none'"/>
     <span class="mnav-logo-text">Pokosek<span>.cz</span></span>
   </a>
   <div class="mnav-right">
