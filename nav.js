@@ -157,7 +157,7 @@ const navHTML = `
   </a>
   <div class="mnav-right">
     <a class="mnav-mail" href="mailto:info@pokosek.cz">✉ MAIL</a>
-    <a class="mnav-phone" href="tel:+420777000222">📞 777 000 222</a>
+    <a class="mnav-phone" href="tel:+420735649011">📞 735 649 011</a>
     <a class="mnav-kontakt" href="kontakt.html">KONTAKT</a>
     <button class="mnav-btn" id="mnavBtn" aria-label="Otevřít menu">
       <div class="mnav-btn-lines"><span></span><span></span><span></span></div>
@@ -240,7 +240,7 @@ const overlayHTML = `
     </a>
   </div>
   <div class="moverlay-bottom">
-    <a href="tel:+420777000222">+420 777 000 222</a>
+    <a href="tel:+420735649011">+420 735 649 011</a>
     <a href="mailto:info@pokosek.cz">info@pokosek.cz</a>
     <a href="kontakt.html">Poptávka zdarma →</a>
   </div>
