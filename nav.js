@@ -105,6 +105,7 @@ nav#main-nav{
 .moverlay-item:first-child{border-top:1px solid rgba(255,255,255,.06)}
 .moverlay-item:hover .mov-sub{color:#9ACD5A}
 .moverlay-item:hover .mov-arrow{color:#9ACD5A;transform:translateX(5px)}
+.mov-icon i{font-size:1.3rem;color:rgba(255,255,255,.7)}
 .mov-icon{
   width:44px;height:44px;border-radius:3px;
   background:rgba(255,255,255,.05);
@@ -112,7 +113,8 @@ nav#main-nav{
   font-size:1.15rem;flex-shrink:0;
   transition:background .2s;
 }
-.moverlay-item:hover .mov-icon{background:rgba(154,205,90,.12)}
+.moverlay-item:hover .mov-icon i{font-size:1.3rem;color:rgba(255,255,255,.7)}
+.mov-icon{background:rgba(154,205,90,.12)}
 .mov-text{flex:1;min-width:0}
 .mov-label{
   font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
@@ -175,7 +177,7 @@ const overlayHTML = `
   </div>
   <div class="moverlay-items">
     <a href="seceni.html" class="moverlay-item">
-      <div class="mov-icon">🌾</div>
+      <div class="mov-icon"><i class="ph ph-tree"></i></div>
       <div class="mov-text">
         <div class="mov-label">Roste mi tráva</div>
         <div class="mov-sub">Sečení trávy</div>
@@ -183,7 +185,7 @@ const overlayHTML = `
       <div class="mov-arrow">→</div>
     </a>
     <a href="zavlazovani.html" class="moverlay-item">
-      <div class="mov-icon">💧</div>
+      <div class="mov-icon"><i class="ph ph-drop"></i></div>
       <div class="mov-text">
         <div class="mov-label">Jsem na suchu</div>
         <div class="mov-sub">Zavlažování na míru</div>
@@ -191,7 +193,7 @@ const overlayHTML = `
       <div class="mov-arrow">→</div>
     </a>
     <a href="navrhy.html" class="moverlay-item">
-      <div class="mov-icon">📐</div>
+      <div class="mov-icon"><i class="ph ph-ruler"></i></div>
       <div class="mov-text">
         <div class="mov-label">Chci to vidět na papíře</div>
         <div class="mov-sub">Návrhy zahrad</div>
@@ -199,7 +201,7 @@ const overlayHTML = `
       <div class="mov-arrow">→</div>
     </a>
     <a href="upravy.html" class="moverlay-item">
-      <div class="mov-icon">✂️</div>
+      <div class="mov-icon"><i class="ph ph-scissors"></i></div>
       <div class="mov-text">
         <div class="mov-label">Chci mít pořádek</div>
         <div class="mov-sub">Úprava okrajů</div>
@@ -207,7 +209,7 @@ const overlayHTML = `
       <div class="mov-arrow">→</div>
     </a>
     <a href="arealy.html" class="moverlay-item">
-      <div class="mov-icon">🏢</div>
+      <div class="mov-icon"><i class="ph ph-buildings"></i></div>
       <div class="mov-text">
         <div class="mov-label">Mám areál a přerůstá mi přes hlavu</div>
         <div class="mov-sub">Údržba areálů</div>
@@ -215,7 +217,7 @@ const overlayHTML = `
       <div class="mov-arrow">→</div>
     </a>
     <a href="odvoz.html" class="moverlay-item">
-      <div class="mov-icon">🚛</div>
+      <div class="mov-icon"><i class="ph ph-truck"></i></div>
       <div class="mov-text">
         <div class="mov-label">Potřebuji se zbavit biomasy</div>
         <div class="mov-sub">Odvoz biomasy</div>
@@ -223,7 +225,7 @@ const overlayHTML = `
       <div class="mov-arrow">→</div>
     </a>
     <a href="cenik.html" class="moverlay-item">
-      <div class="mov-icon">💰</div>
+      <div class="mov-icon"><i class="ph ph-currency-dollar"></i></div>
       <div class="mov-text">
         <div class="mov-label">Kolik to stojí</div>
         <div class="mov-sub">Ceník služeb</div>
@@ -231,7 +233,7 @@ const overlayHTML = `
       <div class="mov-arrow">→</div>
     </a>
     <a href="kontakt.html" class="moverlay-item">
-      <div class="mov-icon">📞</div>
+      <div class="mov-icon"><i class="ph ph-phone"></i></div>
       <div class="mov-text">
         <div class="mov-label">Kam mám zavolat</div>
         <div class="mov-sub">Kontakt a poptávka</div>
