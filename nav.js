@@ -151,7 +151,7 @@ const navHTML = `
 <nav id="main-nav">
   <a class="mnav-logo" href="index.html">
     <img src="images/logo.jpeg" alt="POKOSEK.CZ" onerror="this.style.display='none'"/>
-    <span class="mnav-logo-text">Pokosek<span>.cz</span></span>
+    <span class="mnav-logo-text">POKOSEK<span>.CZ</span></span>
   </a>
   <div class="mnav-right">
     <a class="mnav-mail" href="mailto:info@posecem.cz">✉ MAIL</a>
