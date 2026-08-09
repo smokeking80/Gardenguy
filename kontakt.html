@@ -81,10 +81,13 @@ textarea{resize:vertical;min-height:100px}
 }
 .choice-btn:hover{border-color:var(--green);background:var(--green-light);color:var(--green)}
 .choice-btn.selected{
-  border-color:var(--green);
-  background:var(--green);
-  color:#fff;
+  border-color:var(--green) !important;
+  background:var(--green) !important;
+  color:#fff !important;
   font-weight:600;
+}
+.choice-btn.selected:hover{
+  background:var(--green-mid) !important;
 }
 
 .submit-btn{width:100%;margin-top:8px;padding:15px;border:none;border-radius:2px;background:var(--green);color:#fff;font-family:var(--sans);font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s}
@@ -253,13 +256,15 @@ footer{background:var(--charcoal);padding:48px var(--pad) 32px}
 </footer>
 
 
-// Custom choice buttons
+
+<script>
 function selectChoice(groupId, inputId, btn, value){
-  document.querySelectorAll('#'+groupId+' .choice-btn').forEach(b=>b.classList.remove('selected'));
+  var group = document.getElementById(groupId);
+  group.querySelectorAll('.choice-btn').forEach(function(b){ b.classList.remove('selected'); });
   btn.classList.add('selected');
   document.getElementById(inputId).value = value;
 }
-
+</script>
 <script src="nav.js"></script>
 </body>
 </html>
