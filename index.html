@@ -775,10 +775,13 @@ footer{
 }
 
 
-/* SERVIS ACCORDION */
+
+
+
+/* SERVIS — grassandgarden styl */
 #servis{
   background:var(--white);
-  padding:48px var(--pad);
+  padding:0 var(--pad);
   border-top:1px solid var(--border);
 }
 .servis-inner{
@@ -788,50 +791,82 @@ footer{
 }
 .servis-label{
   font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--gray);margin-bottom:24px;
+  color:var(--gray);padding:48px 0 24px;
   display:flex;align-items:center;gap:10px;
 }
-.servis-acc{display:flex;flex-direction:column;gap:0}
-.servis-item{border-bottom:1px solid #e8e8e4}
-.servis-item:first-child{border-top:1px solid #e8e8e4}
+.servis-acc{display:flex;flex-direction:column}
+.servis-item{
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+}
+.servis-item:first-child{border-top:1px solid var(--border)}
 .servis-btn{
   width:100%;display:flex;align-items:center;
-  padding:16px 0;gap:14px;
-  background:#f5f5f3;border:none;cursor:pointer;
-  font-family:var(--sans);font-size:.97rem;font-weight:600;
+  padding:20px 16px;gap:16px;
+  background:transparent;
+  border:none;cursor:pointer;
+  font-family:var(--sans);font-size:1rem;font-weight:600;
   color:var(--charcoal);text-align:left;
-  transition:color .2s;
+  transition:background .25s,color .25s;
+  border-radius:0;
   margin-bottom:0;
-  border-radius:8px;
-  padding:14px 16px;
-  margin-bottom:6px;
 }
-.servis-btn:hover{color:var(--green)}
+.servis-btn:hover{
+  background:var(--charcoal);
+  color:#fff;
+}
+.servis-btn:hover .servis-ico i{color:#fff}
+.servis-btn.active{
+  background:var(--charcoal);
+  color:#fff;
+}
+.servis-btn.active .servis-ico i{color:#9ACD5A}
 .servis-btn .servis-ico{
   width:36px;height:36px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;color:var(--green);
 }
-.servis-btn .servis-ico i{font-size:1.4rem}
-.servis-btn:hover .servis-ico i{color:var(--green)}
-.servis-btn-title{flex:1}
+.servis-btn .servis-ico i{
+  font-size:1.4rem;color:var(--green);
+  transition:color .25s;
+}
+.servis-btn-title{flex:1;text-align:left}
 .servis-btn-dash{
-  color:var(--gray);font-size:1.1rem;
-  display:flex;flex-direction:column;gap:3px;
-  flex-shrink:0;
+  color:var(--gray);
+  display:flex;flex-direction:column;gap:4px;
+  flex-shrink:0;transition:color .25s;
 }
-.servis-btn-dash span{display:block;width:16px;height:2px;background:currentColor;border-radius:2px}
+.servis-btn:hover .servis-btn-dash,
+.servis-btn.active .servis-btn-dash{color:rgba(255,255,255,.5)}
+.servis-btn-dash span{display:block;width:18px;height:2px;background:currentColor;border-radius:2px}
+.servis-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s cubic-bezier(.22,1,.36,1);
+  background:var(--cream);
+}
+.servis-body.open{max-height:400px}
+.servis-body-inner{
+  padding:20px 20px 24px 68px;
+  font-size:.93rem;color:var(--gray);line-height:1.75;
+}
+
+.servis-right{
+  padding:48px 0;
+  position:sticky;top:88px;
+}
 .servis-right h2{
   font-family:var(--serif);
-  font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;
   letter-spacing:-.02em;line-height:1.1;
   color:var(--charcoal);margin-bottom:24px;
 }
 .servis-right p{
-  color:var(--gray);line-height:1.75;font-size:.95rem;margin-bottom:14px;
+  color:var(--gray);line-height:1.75;font-size:.97rem;margin-bottom:14px;
 }
+
 @media(max-width:860px){
-  .servis-inner{grid-template-columns:1fr;gap:40px}
+  .servis-inner{grid-template-columns:1fr;gap:0}
+  .servis-right{padding:32px 0;position:static}
+  .servis-body-inner{padding:16px 16px 20px 16px}
 }
 
 </style>
@@ -873,63 +908,80 @@ footer{
   <div class="servis-inner">
     <div>
       <div class="servis-label">Servis</div>
-      <div class="servis-acc">
+      <div class="servis-acc" id="servisAcc">
+
         <div class="servis-item">
-          <button class="servis-btn">
+          <button class="servis-btn" onclick="toggleServis(this)">
             <span class="servis-ico"><i class="ph ph-lightbulb"></i></span>
             <span class="servis-btn-title">Jsme kreativní a máme nápad</span>
             <div class="servis-btn-dash"><span></span><span></span></div>
           </button>
+          <div class="servis-body"><div class="servis-body-inner">Jsme kreativní a nasloucháme vašim představám. Navrhneme řešení na míru, které bude odpovídat vašim požadavkům, možnostem i rozpočtu.</div></div>
         </div>
+
         <div class="servis-item">
-          <button class="servis-btn">
+          <button class="servis-btn" onclick="toggleServis(this)">
             <span class="servis-ico"><i class="ph ph-map-pin"></i></span>
             <span class="servis-btn-title">Konzultace na místě</span>
             <div class="servis-btn-dash"><span></span><span></span></div>
           </button>
+          <div class="servis-body"><div class="servis-body-inner">V případě zájmu o jakoukoliv zakázku za Vámi rádi přijedeme a osobně s Vámi probereme všechny potřebné detaily. Úvodní konzultace je samozřejmě zcela zdarma.</div></div>
         </div>
+
         <div class="servis-item">
-          <button class="servis-btn">
+          <button class="servis-btn" onclick="toggleServis(this)">
             <span class="servis-ico"><i class="ph ph-ruler"></i></span>
             <span class="servis-btn-title">Návrhy zahrady</span>
             <div class="servis-btn-dash"><span></span><span></span></div>
           </button>
+          <div class="servis-body"><div class="servis-body-inner">Na základě osobní konzultace připravíme návrh řešení přesně podle vašich představ. Může jít o jednoduchý náčrt, detailnější vizualizaci s plánem rozmístění a počtem rostlin, nebo také o profesionální 3D návrh zpracovaný architektem.</div></div>
         </div>
+
         <div class="servis-item">
-          <button class="servis-btn">
+          <button class="servis-btn" onclick="toggleServis(this)">
             <span class="servis-ico"><i class="ph ph-drop"></i></span>
             <span class="servis-btn-title">Realizace zavlažování</span>
             <div class="servis-btn-dash"><span></span><span></span></div>
           </button>
+          <div class="servis-body"><div class="servis-body-inner">Zaměříme zahradu a připravíme všechny potřebné podklady pro zpracování návrhu a projektové dokumentace. V případě potřeby provedeme také tlakovou zkoušku přivedené vody. Návrh zavlažovacího systému zpravidla zpracováváme jako součást celkového návrhu zahrady.</div></div>
         </div>
+
         <div class="servis-item">
-          <button class="servis-btn">
+          <button class="servis-btn" onclick="toggleServis(this)">
             <span class="servis-ico"><i class="ph ph-plant"></i></span>
             <span class="servis-btn-title">Realizace zahrad</span>
             <div class="servis-btn-dash"><span></span><span></span></div>
           </button>
+          <div class="servis-body"><div class="servis-body-inner">Celou zahradu dokážeme kompletně zrealizovat podle společné domluvy, připraveného návrhu nebo projektové dokumentace. Zajistíme veškerý materiál včetně rostlin, které vybíráme přímo od pěstitelů — kvalitní rostliny za velmi zajímavé ceny.</div></div>
         </div>
+
         <div class="servis-item">
-          <button class="servis-btn">
+          <button class="servis-btn" onclick="toggleServis(this)">
             <span class="servis-ico"><i class="ph ph-scissors"></i></span>
             <span class="servis-btn-title">Údržba zahrad</span>
             <div class="servis-btn-dash"><span></span><span></span></div>
           </button>
+          <div class="servis-body"><div class="servis-body-inner">Provádíme pravidelnou i jednorázovou údržbu zahrad. Postaráme se o střih ovocných stromů, úpravu keřů i pravidelné zastřihování živých plotů. Přebytečný odpad odvezeme a ekologicky zpracujeme.</div></div>
         </div>
+
         <div class="servis-item">
-          <button class="servis-btn">
+          <button class="servis-btn" onclick="toggleServis(this)">
             <span class="servis-ico"><i class="ph ph-buildings"></i></span>
             <span class="servis-btn-title">Firemní areály</span>
             <div class="servis-btn-dash"><span></span><span></span></div>
           </button>
+          <div class="servis-body"><div class="servis-body-inner">Pravidelně i jednorázově se staráme o údržbu zeleně ve firemních areálech, sportovních hřištích i rezidenčních oblastech. Přijíždíme vždy včas — termíny si hlídáme sami. Přebytečný odpad odvezeme a ekologicky zpracujeme.</div></div>
         </div>
+
         <div class="servis-item">
-          <button class="servis-btn">
+          <button class="servis-btn" onclick="toggleServis(this)">
             <span class="servis-ico"><i class="ph ph-tree"></i></span>
             <span class="servis-btn-title">Sečení a vertikutace trávy</span>
             <div class="servis-btn-dash"><span></span><span></span></div>
           </button>
+          <div class="servis-body"><div class="servis-body-inner">Poskytujeme profesionální sečení trávy v Brně a okolí. Díky moderní technice zvládneme i rozsáhlé pozemky až do 10 000 m². Sekáme zahrady, louky, obecní pozemky, sportovní plochy i firemní areály. Domluvíme se na pravidelné údržbě i jednorázovém sečení.</div></div>
         </div>
+
       </div>
     </div>
     <div class="servis-right">
@@ -937,7 +989,7 @@ footer{
       <p>Navrhujeme zahrady, parky nebo i firemní areály. Připravíme od základního náčrtku přes detailní vizualizaci až po kompletní kladecí plán a výpis rostlin.</p>
       <p>Poskytujeme údržbu zeleně a sečení trávy v Brně a okolí. Vlastníme profesionální sekací stroje, se kterými zvládneme posekat i opravdu velké plochy.</p>
       <p>Pravidelně sečeme trávu a udržujeme zeleň firemních areálů, sportovních hřišť a rezidenčních oblastí. Nabízíme i vertikutaci velkých travnatých ploch se sběrem.</p>
-      <p>Přebytečný odpad odvezeme a ekologicky zpracujeme. Větve z keřů a stromů lze štěpkovat a štěpku využít jako přírodní podklad do záhonů.</p>
+      <p>Přebytečný odpad odvezeme a ekologicky zpracujeme. Větve lze štěpkovat a vzniklou štěpku využít jako přírodní podklad do záhonů.</p>
     </div>
   </div>
 </section>
@@ -1054,6 +1106,24 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}});
 },{threshold:.12,rootMargin:'0px 0px -32px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+<script>
+function toggleServis(btn){
+  var item = btn.parentElement;
+  var body = item.querySelector('.servis-body');
+  var isOpen = body.classList.contains('open');
+  // Close all
+  document.querySelectorAll('#servisAcc .servis-btn').forEach(function(b){
+    b.classList.remove('active');
+    b.parentElement.querySelector('.servis-body').classList.remove('open');
+  });
+  // Open if was closed
+  if(!isOpen){
+    btn.classList.add('active');
+    body.classList.add('open');
+  }
+}
 </script>
 <script src="nav.js"></script>
 
