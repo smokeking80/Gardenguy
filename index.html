@@ -885,12 +885,31 @@ footer{
   .servis-body-inner{padding:16px 16px 20px 16px}
 }
 
+
+/* HERO LOGO */
+.hero-logo{
+  display:flex;justify-content:center;align-items:center;
+  padding:0 0 40px;
+}
+.hero-logo img{
+  height:clamp(80px,12vw,160px);
+  width:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 24px rgba(0,0,0,.4));
+}
+@media(max-width:760px){
+  .hero-logo{display:none}
+}
+
 </style>
 <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body>
 <!-- HERO — zelené pozadí s dlaždicemi -->
 <section id="hero">
+<div class="hero-logo">
+  <img src="images/logo-1.png" alt="Pokosek — Profesionální údržba zeleně"/>
+</div>
 <div class="hero-tiles">
   <a href="seceni.html" class="hero-tile">
     <div class="hero-tile-img"><img src="images/seceni.jpeg" alt="Sečení"/></div>
