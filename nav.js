@@ -27,7 +27,7 @@ nav#main-nav{
   text-decoration:none;
 }
 @media(min-width:601px){
-  .mnav-logo{margin-left:50px}
+  .mnav-logo{margin-left:40px}
 }
 .mnav-logo img{height:120px;width:auto;border-radius:3px}
 .mnav-logo-text{
