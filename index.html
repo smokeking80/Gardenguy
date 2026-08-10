@@ -152,18 +152,32 @@ img{display:block;max-width:100%}
 }
 .hero-tile-img{
   position:absolute;inset:0;
-  transition:transform .5s cubic-bezier(.22,1,.36,1);
+  overflow:hidden;
+  transition:transform .6s cubic-bezier(.25,1,.5,1);
 }
-.hero-tile:hover .hero-tile-img{transform:scale(1.06)}
+.hero-tile:hover .hero-tile-img{transform:scale(1.12)}
 .hero-tile-img img{
   width:100%;height:100%;
   object-fit:cover;display:block;
+  transition:transform .6s cubic-bezier(.25,1,.5,1);
 }
+.hero-tile:hover .hero-tile-img img{transform:scale(1.0)}
 .hero-tile::after{
   content:'';
   position:absolute;inset:0;
   background:linear-gradient(to top,rgba(0,0,0,.8) 0%,rgba(0,0,0,.15) 55%,transparent 100%);
   z-index:1;
+  transition:opacity .4s;
+}
+.hero-tile::before{
+  content:'';
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0);
+  z-index:1;
+  transition:background .4s;
+}
+.hero-tile:hover::before{
+  background:rgba(0,0,0,0.15);
 }
 .hero-tile-label{
   position:absolute;
@@ -177,6 +191,8 @@ img{display:block;max-width:100%}
   transition:padding .3s cubic-bezier(.22,1,.36,1);
 }
 .hero-tile:hover .hero-tile-label{padding-bottom:20px}
+.hero-tile:active .hero-tile-img{transform:scale(1.12)}
+.hero-tile:active .hero-tile-label{padding-bottom:20px}
 @media(max-width:760px){
   #hero{padding:88px 10px 10px}
   .hero-tiles{
@@ -1061,7 +1077,7 @@ footer{
 <div class="footer-top">
 <div>
 <div class="footer-logo"><img class="footer-logo-img" src="images/smok.png" alt="Pokosek.cz"/></div>
-<div class="footer-tagline">Grafika,weby,tisk,reklama</div>
+<div class="footer-tagline">Zajišťujeme kompletní webové služby.</div>
 </div>
 <nav aria-label="Patička" class="footer-links">
 <!-- <a href="seceni.html">Sečení</a> -->
