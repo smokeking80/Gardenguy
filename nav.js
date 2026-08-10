@@ -29,7 +29,7 @@ nav#main-nav{
 @media(min-width:601px){
   .mnav-logo{margin-left:32px}
 }
-.mnav-logo img{height:120px;width:auto;border-radius:3px}
+.mnav-logo img{height:126px;width:auto;border-radius:3px}
 .mnav-logo-text{
   font-family:'Playfair Display',Georgia,serif;
   font-size:1.15rem;font-weight:700;
