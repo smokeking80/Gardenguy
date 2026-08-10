@@ -162,7 +162,7 @@ document.head.appendChild(style);
 const navHTML = `
 <nav id="main-nav">
   <a class="mnav-logo" href="index.html">
-    <img src="images/logo.png" alt="POKOSEK.CZ" onerror="this.style.display='none'"/>
+    <img src="images/logo-1.png" alt="POKOSEK.CZ" onerror="this.style.display='none'"/>
   </a>
   <div class="mnav-right">
     <a class="mnav-mail" href="mailto:info@pokosek.cz">✉ MAIL</a>
