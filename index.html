@@ -1415,7 +1415,7 @@ function addMessage(text, type) {
   const parts = text.split(urlRegex);
 
   parts.forEach(part => {
-    if (urlRegex.test(part)) {
+    if (part.match(/^https?:\/\//)) {
       const link = document.createElement("a");
       link.href = part;
       link.target = "_blank";
