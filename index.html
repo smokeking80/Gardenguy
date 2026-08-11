@@ -901,7 +901,145 @@ footer{
 @media(max-width:760px){
   .hero-logo{display:none}
 }
+/* AI CHATBOT */
+.chatbot-button{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  width:60px;
+  height:60px;
+  border:none;
+  border-radius:50%;
+  background:var(--green);
+  color:#fff;
+  font-size:1.6rem;
+  cursor:pointer;
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+  z-index:9999;
+  transition:transform .2s, background .2s;
+}
 
+.chatbot-button:hover{
+  transform:scale(1.06);
+  background:var(--green-mid);
+}
+
+.chatbot{
+  position:fixed;
+  right:24px;
+  bottom:96px;
+  width:370px;
+  max-width:calc(100vw - 30px);
+  height:520px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  z-index:9998;
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.chatbot.open{
+  display:flex;
+}
+
+.chatbot-header{
+  background:var(--green);
+  color:#fff;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.chatbot-header strong{
+  font-family:var(--serif);
+  font-size:1.1rem;
+}
+
+.chatbot-close{
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:1.4rem;
+  cursor:pointer;
+}
+
+.chatbot-messages{
+  flex:1;
+  padding:16px;
+  overflow-y:auto;
+  background:var(--cream);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.chat-message{
+  max-width:85%;
+  padding:10px 13px;
+  border-radius:12px;
+  font-size:.88rem;
+  line-height:1.5;
+}
+
+.chat-message.bot{
+  align-self:flex-start;
+  background:#fff;
+  border:1px solid var(--border);
+  color:var(--charcoal);
+}
+
+.chat-message.user{
+  align-self:flex-end;
+  background:var(--green);
+  color:#fff;
+}
+
+.chatbot-input{
+  display:flex;
+  border-top:1px solid var(--border);
+  background:#fff;
+}
+
+.chatbot-input input{
+  flex:1;
+  border:none;
+  padding:14px;
+  outline:none;
+  font-size:.9rem;
+}
+
+.chatbot-input button{
+  width:55px;
+  border:none;
+  background:var(--green);
+  color:#fff;
+  cursor:pointer;
+  font-size:1.1rem;
+}
+
+.chatbot-input button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+@media(max-width:600px){
+  .chatbot{
+    right:10px;
+    bottom:80px;
+    width:calc(100vw - 20px);
+    height:70vh;
+    max-height:600px;
+  }
+
+  .chatbot-button{
+    right:15px;
+    bottom:15px;
+  }
+}
 </style>
 <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
@@ -1222,5 +1360,115 @@ function toggleAcc(btn){
 })();
 </script>
 
+  <!-- AI CHATBOT -->
+<button class="chatbot-button" id="chatbotButton" aria-label="Otevřít zahradního poradce">
+  🌱
+</button>
+
+<div class="chatbot" id="chatbot">
+  <div class="chatbot-header">
+    <strong>🌱 Zahradní poradce</strong>
+    <button class="chatbot-close" id="chatbotClose" aria-label="Zavřít">×</button>
+  </div>
+
+  <div class="chatbot-messages" id="chatbotMessages">
+    <div class="chat-message bot">
+      Dobrý den! 👋 Jsem zahradní poradce. Můžu vám poradit se sekáním, zavlažováním nebo údržbou zahrady.
+    </div>
+  </div>
+
+  <form class="chatbot-input" id="chatbotForm">
+    <input
+      type="text"
+      id="chatbotInput"
+      placeholder="Napište svůj dotaz..."
+      autocomplete="off"
+    />
+    <button type="submit" id="chatbotSend">➤</button>
+  </form>
+</div>
+
+<script>
+const chatbot = document.getElementById("chatbot");
+const chatbotButton = document.getElementById("chatbotButton");
+const chatbotClose = document.getElementById("chatbotClose");
+const chatbotForm = document.getElementById("chatbotForm");
+const chatbotInput = document.getElementById("chatbotInput");
+const chatbotMessages = document.getElementById("chatbotMessages");
+const chatbotSend = document.getElementById("chatbotSend");
+
+chatbotButton.addEventListener("click", () => {
+  chatbot.classList.add("open");
+  chatbotInput.focus();
+});
+
+chatbotClose.addEventListener("click", () => {
+  chatbot.classList.remove("open");
+});
+
+function addMessage(text, type) {
+  const message = document.createElement("div");
+  message.className = "chat-message " + type;
+  message.textContent = text;
+  chatbotMessages.appendChild(message);
+  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+chatbotForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const message = chatbotInput.value.trim();
+
+  if (!message) return;
+
+  addMessage(message, "user");
+
+  chatbotInput.value = "";
+  chatbotInput.disabled = true;
+  chatbotSend.disabled = true;
+
+  addMessage("Chvilku přemýšlím…", "bot");
+
+  const loadingMessage =
+    chatbotMessages.lastElementChild;
+
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: message
+      })
+    });
+
+    const data = await response.json();
+
+    loadingMessage.remove();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Chyba serveru");
+    }
+
+    addMessage(data.reply, "bot");
+
+  } catch (error) {
+    console.error(error);
+
+    loadingMessage.remove();
+
+    addMessage(
+      "Omlouvám se, momentálně se mi nepodařilo odpovědět. Zkuste to prosím znovu.",
+      "bot"
+    );
+
+  } finally {
+    chatbotInput.disabled = false;
+    chatbotSend.disabled = false;
+    chatbotInput.focus();
+  }
+});
+</script>
 </body>
 </html>
