@@ -1409,7 +1409,28 @@ chatbotClose.addEventListener("click", () => {
 function addMessage(text, type) {
   const message = document.createElement("div");
   message.className = "chat-message " + type;
-  message.textContent = text;
+
+  // Převod URL na klikací odkazy
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+
+  parts.forEach(part => {
+    if (urlRegex.test(part)) {
+      const link = document.createElement("a");
+      link.href = part;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "👉 Odeslat poptávku";
+      link.style.color = "#2b6b3a";
+      link.style.fontWeight = "600";
+      link.style.textDecoration = "underline";
+
+      message.appendChild(link);
+    } else {
+      message.appendChild(document.createTextNode(part));
+    }
+  });
+
   chatbotMessages.appendChild(message);
   chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
