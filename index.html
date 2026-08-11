@@ -1433,41 +1433,52 @@ chatbotForm.addEventListener("submit", async (event) => {
     chatbotMessages.lastElementChild;
 
   try {
-    const response = await fetch("/api/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: message
-      })
-    });
+  chatHistory.push({
+    role: "user",
+    content: message
+  });
 
-    const data = await response.json();
+  const response = await fetch("/api/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: message,
+      messages: chatHistory
+    })
+  });
 
-    loadingMessage.remove();
+  const data = await response.json();
 
-    if (!response.ok) {
-      throw new Error(data.error || "Chyba serveru");
-    }
+  loadingMessage.remove();
 
-    addMessage(data.reply, "bot");
-
-  } catch (error) {
-    console.error(error);
-
-    loadingMessage.remove();
-
-    addMessage(
-      "Omlouvám se, momentálně se mi nepodařilo odpovědět. Zkuste to prosím znovu.",
-      "bot"
-    );
-
-  } finally {
-    chatbotInput.disabled = false;
-    chatbotSend.disabled = false;
-    chatbotInput.focus();
+  if (!response.ok) {
+    throw new Error(data.error || "Chyba serveru");
   }
+
+  addMessage(data.reply, "bot");
+
+  chatHistory.push({
+    role: "assistant",
+    content: data.reply
+  });
+
+} catch (error) {
+  console.error(error);
+
+  loadingMessage.remove();
+
+  addMessage(
+    "Omlouvám se, momentálně se mi nepodařilo odpovědět. Zkuste to prosím znovu.",
+    "bot"
+  );
+
+} finally {
+  chatbotInput.disabled = false;
+  chatbotSend.disabled = false;
+  chatbotInput.focus();
+}
 });
 </script>
 </body>
