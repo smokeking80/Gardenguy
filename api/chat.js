@@ -62,9 +62,19 @@ Pokud chce zákazník nabídku, doporuč mu zanechat kontakt.
       });
     }
 
-    return res.status(200).json({
-      reply: data.output_text || "Promiňte, nepodařilo se vytvořit odpověď."
-    });
+    const reply =
+  data.output_text ||
+  data.output
+    ?.filter(item => item.type === "message")
+    ?.flatMap(item => item.content || [])
+    ?.filter(item => item.type === "output_text")
+    ?.map(item => item.text)
+    ?.join("\n") ||
+  "Promiňte, nepodařilo se vytvořit odpověď.";
+
+return res.status(200).json({
+  reply
+});
 
   } catch (error) {
     console.error(error);
