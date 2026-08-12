@@ -1028,16 +1028,30 @@ footer{
 
 @media(max-width:600px){
   .chatbot{
-    right:10px;
-    bottom:80px;
-    width:calc(100vw - 20px);
-    height:70vh;
-    max-height:600px;
+    right:0;
+    left:0;
+    bottom:0;
+    width:100%;
+    max-width:100%;
+    height:50vh;
+    max-height:50vh;
+    border-radius:16px 16px 0 0;
+    border-left:none;
+    border-right:none;
+    border-bottom:none;
   }
-
+  .chatbot-messages{
+    flex:1;
+    min-height:0;
+  }
   .chatbot-button{
-    right:15px;
-    bottom:15px;
+    right:16px;
+    bottom:16px;
+  }
+  /* Prevent page scroll when keyboard opens */
+  .chatbot.open{
+    position:fixed;
+    bottom:0;
   }
 }
 </style>
@@ -1398,8 +1412,13 @@ const chatbotMessages = document.getElementById("chatbotMessages");
 const chatbotSend = document.getElementById("chatbotSend");
 
 chatbotButton.addEventListener("click", () => {
-  chatbot.classList.add("open");
-  chatbotInput.focus();
+  if(chatbot.classList.contains("open")){
+    chatbot.classList.remove("open");
+  } else {
+    chatbot.classList.add("open");
+    chatbotInput.focus();
+    setTimeout(()=>{ chatbotMessages.scrollTop = chatbotMessages.scrollHeight; }, 100);
+  }
 });
 
 chatbotClose.addEventListener("click", () => {
