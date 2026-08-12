@@ -1033,8 +1033,10 @@ footer{
     bottom:0;
     width:100%;
     max-width:100%;
-    height:50vh;
-    max-height:50vh;
+    height:65vh;
+    height:65dvh;
+    max-height:65vh;
+    max-height:65dvh;
     border-radius:16px 16px 0 0;
     border-left:none;
     border-right:none;
@@ -1052,6 +1054,11 @@ footer{
   .chatbot.open{
     position:fixed;
     bottom:0;
+  }
+  /* Hide the round launcher icon while the chat is open so it can never
+     sit on top of the send button */
+  .chatbot-button.chatbot-button-hidden{
+    display:none;
   }
 }
 </style>
@@ -1411,18 +1418,55 @@ const chatbotInput = document.getElementById("chatbotInput");
 const chatbotMessages = document.getElementById("chatbotMessages");
 const chatbotSend = document.getElementById("chatbotSend");
 
+const isMobile = () => window.matchMedia("(max-width:600px)").matches;
+
+function openChatbot(){
+  chatbot.classList.add("open");
+  if(isMobile()) chatbotButton.classList.add("chatbot-button-hidden");
+  chatbotInput.focus();
+  setTimeout(()=>{ chatbotMessages.scrollTop = chatbotMessages.scrollHeight; }, 100);
+  adjustChatbotForViewport();
+}
+
+function closeChatbot(){
+  chatbot.classList.remove("open");
+  chatbotButton.classList.remove("chatbot-button-hidden");
+  if(isMobile()){
+    chatbot.style.height = "";
+    chatbot.style.bottom = "";
+  }
+}
+
+// Keeps the mobile chat window fully above the on-screen keyboard.
+// Without this, a fixed bottom:0 box can end up partly hidden behind
+// the keyboard because the layout viewport doesn't shrink on Android/iOS.
+function adjustChatbotForViewport(){
+  if(!isMobile() || !chatbot.classList.contains("open")) return;
+  if(!window.visualViewport) return;
+  const vv = window.visualViewport;
+  const keyboardOffset = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+  chatbot.style.bottom = keyboardOffset + "px";
+  chatbot.style.height = Math.min(vv.height * 0.85, vv.height - 10) + "px";
+}
+
+if(window.visualViewport){
+  window.visualViewport.addEventListener("resize", adjustChatbotForViewport);
+  window.visualViewport.addEventListener("scroll", adjustChatbotForViewport);
+}
+window.addEventListener("resize", adjustChatbotForViewport);
+chatbotInput.addEventListener("focus", () => setTimeout(adjustChatbotForViewport, 300));
+chatbotInput.addEventListener("blur", () => setTimeout(adjustChatbotForViewport, 300));
+
 chatbotButton.addEventListener("click", () => {
   if(chatbot.classList.contains("open")){
-    chatbot.classList.remove("open");
+    closeChatbot();
   } else {
-    chatbot.classList.add("open");
-    chatbotInput.focus();
-    setTimeout(()=>{ chatbotMessages.scrollTop = chatbotMessages.scrollHeight; }, 100);
+    openChatbot();
   }
 });
 
 chatbotClose.addEventListener("click", () => {
-  chatbot.classList.remove("open");
+  closeChatbot();
 });
 
 function addMessage(text, type) {
